@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Five Days, Four Temples · 24–28 December 2026</title>
+<style>
+:root{
+  --night:#12122b; --ink:#23233d; --plum:#2c2653;
+  --gold:#e8b34b; --gold-deep:#c98a2b; --saffron:#e07b39;
+  --cream:#faf5ea; --paper:#fffdf7; --leaf:#0f6a5c; --rose:#c14b6a;
+  --muted:#6b6580; --line:#e9dfc9;
+  --shadow:0 10px 30px rgba(20,16,50,.12);
+  --r:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.65}
+h1,h2,h3,.serif{font-family:Georgia,"Times New Roman",serif}
+::selection{background:var(--gold);color:var(--night)}
+
+/* progress bar */
+#progress{position:fixed;top:0;left:0;height:4px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--saffron),var(--gold));transition:width .1s linear}
+
+/* nav */
+nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+  background:rgba(18,18,43,.86);color:#fff;border-bottom:1px solid rgba(232,179,75,.25)}
+nav.top .inner{max-width:1080px;margin:0 auto;padding:10px 18px;display:flex;gap:6px;align-items:center;overflow-x:auto}
+nav.top .brand{font-family:Georgia,serif;color:var(--gold);font-weight:bold;white-space:nowrap;margin-right:8px;font-size:15px}
+nav.top a.nl{color:#d9d4e8;text-decoration:none;font-size:13px;font-weight:600;white-space:nowrap;
+  padding:7px 12px;border-radius:999px;transition:.25s}
+nav.top a.nl:hover{background:rgba(232,179,75,.18);color:#fff}
+nav.top a.nl.active{background:var(--gold);color:var(--night)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(180deg,#0c0c22 0%,#23235c 45%,#6b3a6e 72%,#e07b39 100%)}
+.stars{position:absolute;inset:0;pointer-events:none}
+.stars i{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.8;animation:tw 3s infinite ease-in-out}
+@keyframes tw{0%,100%{opacity:.15;transform:scale(.8)}50%{opacity:.95;transform:scale(1.25)}}
+.hero-inner{position:relative;max-width:1080px;margin:0 auto;padding:72px 22px 0;text-align:center}
+.kicker{letter-spacing:.28em;font-size:12px;text-transform:uppercase;color:var(--gold);font-weight:700}
+.hero h1{font-size:clamp(34px,6vw,64px);line-height:1.05;margin:14px 0 10px;text-shadow:0 4px 30px rgba(0,0,0,.4)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .sub{max-width:640px;margin:0 auto;color:#f3e8d2;font-size:clamp(15px,2.4vw,18px)}
+.route-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:26px 0 8px}
+.chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;
+  font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;backdrop-filter:blur(4px)}
+.chip b{color:var(--gold)}
+.countdown{display:flex;gap:12px;justify-content:center;margin:26px 0 10px;flex-wrap:wrap}
+.cd{background:rgba(0,0,0,.35);border:1px solid rgba(232,179,75,.4);border-radius:14px;min-width:86px;padding:12px 8px}
+.cd b{display:block;font-size:30px;color:var(--gold);font-variant-numeric:tabular-nums}
+.cd span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#d9c9a8}
+.cd-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#d9c9a8;margin-top:2px}
+.hero-art{display:block;width:100%;margin:26px 0 -6px}
+.lamp-glow{animation:glow 3.2s ease-in-out infinite}
+@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* layout */
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+section.block{margin-top:56px;scroll-margin-top:70px}
+.sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.sec-head .date{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:var(--night);padding:6px 14px;border-radius:999px}
+.sec-head h2{font-size:clamp(24px,3.6vw,34px);margin:0}
+.sec-head.fri .date{background:linear-gradient(135deg,#b3541e,#e07b39)}
+.sec-head.sat .date{background:linear-gradient(135deg,#0f6a5c,#2fa08d)}
+.sec-head.sun .date{background:linear-gradient(135deg,#8e2f52,#c14b6a)}
+.sec-head.mon .date{background:linear-gradient(135deg,#2f6b3a,#5da24f)}
+.sec-sub{color:var(--muted);margin:2px 0 18px;font-size:15px}
+
+/* glance cards */
+.glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:34px}
+.gcard{position:relative;display:block;text-decoration:none;color:#fff;border-radius:var(--r);padding:20px 18px;overflow:hidden;
+  background:linear-gradient(150deg,var(--night),var(--plum));box-shadow:var(--shadow);transition:transform .3s}
+.gcard:hover{transform:translateY(-5px)}
+.gcard small{letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:var(--gold);font-weight:800}
+.gcard b{display:block;font-family:Georgia,serif;font-size:19px;margin:4px 0}
+.gcard span{font-size:13px;color:#cfc8e4}
+.gcard::after{content:"→";position:absolute;right:16px;bottom:12px;color:var(--gold);font-size:20px;transition:.3s}
+.gcard:hover::after{transform:translateX(5px)}
+.gcard.fri{background:linear-gradient(150deg,#7a3410,#e07b39)}
+.gcard.sat{background:linear-gradient(150deg,#073b33,#15907d)}
+.gcard.sun{background:linear-gradient(150deg,#5e1f38,#c14b6a)}
+.gcard.mon{background:linear-gradient(150deg,#1d4426,#5da24f)}
+
+/* journey map */
+.journey{background:var(--night);color:#fff;border-radius:22px;padding:30px 26px;margin-top:44px;box-shadow:var(--shadow);overflow:hidden}
+.journey h3{margin:0 0 4px;font-size:22px;color:var(--gold)}
+.journey p{margin:0 0 18px;color:#bdb4d8;font-size:14px}
+.jmap{display:flex;align-items:flex-start;overflow-x:auto;padding:10px 4px 6px;gap:0}
+.jstop{flex:1 0 120px;text-align:center;position:relative;padding-top:34px;min-width:120px}
+.jstop::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;
+  background:var(--night);border:3px solid var(--gold);z-index:2}
+.jstop::after{content:"";position:absolute;top:19px;left:calc(-50% + 10px);right:calc(50% + 10px);height:2px;
+  background:repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 14px);opacity:.55}
+.jstop:first-child::after{display:none}
+.jstop b{display:block;font-size:13.5px}
+.jstop span{font-size:12px;color:#bdb4d8}
+.jstop .mv{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;color:var(--night);background:var(--gold);
+  border-radius:999px;padding:2px 10px}
+
+/* timeline */
+.timeline{position:relative;margin:0;padding:0;list-style:none}
+.timeline::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:3px;border-radius:3px;
+  background:linear-gradient(180deg,var(--gold),var(--saffron),var(--rose))}
+.ev{position:relative;display:flex;gap:16px;margin:0 0 14px;opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.ev.in{opacity:1;transform:none}
+.ev .dot{flex:0 0 40px;height:40px;border-radius:50%;background:var(--paper);border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;z-index:1;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.ev .dot svg{width:20px;height:20px}
+.ev .body{flex:1;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:14px 18px;box-shadow:var(--shadow);transition:transform .25s}
+.ev .body:hover{transform:translateX(4px)}
+.ev time{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--ink);
+  border-radius:8px;padding:3px 10px;margin-bottom:6px}
+.ev h4{margin:2px 0 4px;font-size:17px}
+.ev p{margin:0;font-size:14.5px;color:#4a4560}
+.ev .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  border-radius:999px;padding:2px 10px;margin-left:8px;vertical-align:2px}
+.t-travel .tag{background:#e3e0f7;color:#3c3480}.t-travel time{background:#3c3480}
+.t-food .tag{background:#fdebd3;color:#a34d12}.t-food time{background:#b3541e}
+.t-temple .tag{background:#fbeecb;color:#8a5f10}.t-temple time{background:#8a5f10}
+.t-rest .tag{background:#dde7f5;color:#2c4d8a}.t-rest time{background:#2c4d8a}
+.t-bath .tag{background:#d5f0ea;color:#0b5a4e}.t-bath time{background:#0f6a5c}
+.t-walk .tag{background:#dff2dc;color:#2c6b2f}.t-walk time{background:#2f6b3a}
+.t-special .tag{background:#f6dbe2;color:#8e2f52}.t-special time{background:#8e2f52}
+
+.note{background:#fff6df;border:1px solid #f0d9a0;border-left:6px solid var(--gold);border-radius:0 14px 14px 0;
+  padding:14px 18px;font-size:14.5px;margin:16px 0;box-shadow:var(--shadow)}
+.note b{color:#8a5f10}
+.rule{background:#eef7f4;border:1px solid #bfe3d8;border-left:6px solid var(--leaf);border-radius:0 14px 14px 0;
+  padding:14px 18px;font-size:14.5px;margin:16px 0;box-shadow:var(--shadow)}
+.rule b{color:var(--leaf)}
+
+/* night walk scene */
+.night{background:linear-gradient(180deg,#0b0b20,#23235c 70%,#3a2a63);border-radius:22px;color:#fff;padding:30px 26px 8px;
+  box-shadow:var(--shadow);overflow:hidden;margin-top:14px}
+.night h3{color:var(--gold);margin:0 0 4px;font-size:22px}
+.night p{color:#cfc6ec;font-size:14.5px;max-width:640px}
+.giri{width:100%;height:auto;display:block}
+.giri .path{stroke-dasharray:10 8;animation:march 2.6s linear infinite}
+@keyframes march{to{stroke-dashoffset:-36}}
+.walk-tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:18px 0 26px;padding:0;list-style:none}
+.walk-tips li{background:rgba(255,255,255,.07);border:1px solid rgba(232,179,75,.3);border-radius:14px;padding:13px 16px;font-size:14px}
+.walk-tips b{color:var(--gold)}
+
+/* costs */
+.cost-grid{display:grid;grid-template-columns:1fr;gap:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.cost-row{display:flex;justify-content:space-between;gap:12px;padding:13px 20px;font-size:15px;border-bottom:1px solid var(--line)}
+.cost-row:nth-child(odd){background:#fbf6e9}
+.cost-row.total{background:var(--night);color:#fff;font-size:18px}
+.cost-row.total b:last-child{color:var(--gold);font-size:22px}
+
+/* checklist */
+.check{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;padding:0;list-style:none;margin:0}
+.check li{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;font-size:14.5px;
+  box-shadow:var(--shadow);position:relative;padding-left:56px;opacity:0;transform:translateY(22px);transition:.55s}
+.check li.in{opacity:1;transform:none}
+.check li::before{counter-increment:step;content:counter(step);position:absolute;left:14px;top:14px;width:30px;height:30px;border-radius:50%;
+  background:var(--night);color:var(--gold);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.check{counter-reset:step}
+.check b{color:var(--ink)}
+
+/* link buttons */
+.link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+a.btn{display:flex;align-items:center;gap:10px;background:var(--night);color:#fff;text-decoration:none;font-weight:700;font-size:14.5px;
+  border-radius:14px;padding:14px 16px;transition:.25s;box-shadow:var(--shadow)}
+a.btn:hover{transform:translateY(-3px);background:var(--plum)}
+a.btn svg{width:20px;height:20px;flex:0 0 20px}
+a.btn small{display:block;font-weight:400;font-size:12px;color:#bdb4d8}
+a.btn.gold{background:linear-gradient(135deg,#8a5f10,var(--gold-deep));}
+
+/* book table */
+.book{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.book .brow{padding:16px 20px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:170px 1fr;gap:4px 16px}
+.book .brow:last-child{border-bottom:none}
+.book .when{font-weight:800;color:var(--leaf);font-size:14px}
+.book b.t{font-size:16px}
+
+footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+
+/* reveal defaults */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+
+#toTop{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--night);color:var(--gold);font-size:20px;display:none;z-index:60;box-shadow:var(--shadow)}
+
+@media(max-width:640px){
+  .book .brow{grid-template-columns:1fr}
+  .ev .body:hover{transform:none}
+  .timeline::before{left:15px}
+  .ev .dot{flex-basis:32px;height:32px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .ev,.rv,.check li{opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
+}
+@media print{
+  nav.top,#progress,#toTop,.countdown{display:none}
+  body{background:#fff}
+  .ev,.rv,.check li{opacity:1;transform:none}
+  section.block{margin-top:24px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-train" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="13" rx="3"/><path d="M4 10h16M8 20l1.5-4M16 20l-1.5-4"/><circle cx="8.5" cy="13.5" r=".8" fill="currentColor"/><circle cx="15.5" cy="13.5" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-bus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M3 10h18M7 20v-4M17 20v-4"/><circle cx="7.5" cy="18.5" r="1.4"/><circle cx="16.5" cy="18.5" r="1.4"/></symbol>
+  <symbol id="i-metro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="14" rx="4"/><path d="M5 9h14M9 20l1-4M15 20l-1-4"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13l2-6h8l5 6"/><path d="M4 13h16v5H4zM7 18v1.5M17 18v1.5"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="16.5" cy="18" r="1.6"/></symbol>
+  <symbol id="i-cab" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l2-5h10l2 5M4 12h16v6H4z"/><circle cx="8" cy="18" r="1.6"/><circle cx="16" cy="18" r="1.6"/></symbol>
+  <symbol id="i-food" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v8M10 3v8M8 11v10M8 3a2 2 0 01-2 2M8 3a2 2 0 002 2M16 3c-2 1-3 4-3 7 0 2 1 3 3 3v8M16 3v18"/></symbol>
+  <symbol id="i-temple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 6H3zM5 8v4M9.5 8v4M14.5 8v4M19 8v4M4 12h16v3M6 15v6M10 15v6M14 15v6M18 15v6M3 21h18"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-8M3 14h18v4M6 14V9h12a4 4 0 014 4"/><circle cx="6.5" cy="10.5" r="1.5"/></symbol>
+  <symbol id="i-bath" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16v2a5 5 0 01-5 5H9a5 5 0 01-5-5zM6 12V6a2 2 0 014 0M8 21l-1-2M16 21l1-2"/></symbol>
+  <symbol id="i-walk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="4" r="1.8"/><path d="M13 8l-3 5 2 3v5M13 8l2 3 4 1M10 13l-3 1"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14A8 8 0 1110 4a6.5 6.5 0 0010 10z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="12" rx="2"/><path d="M9 8V6a3 3 0 016 0v2"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 000 4v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2a2 2 0 000-4z"/><path d="M14 6v2M14 11v2M14 16v2"/></symbol>
+  <symbol id="i-lamp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 3 6 5 6 9a6 6 0 01-12 0c0-4 3-6 6-9z"/><path d="M9 21h6"/></symbol>
+  <symbol id="i-shop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1-5h14l1 5M4 9v11h16V9M4 9h16M9 20v-6h6v6"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4L11 13M9 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-3"/></symbol>
+</svg>
+
+<div id="progress"></div>
+
+<nav class="top"><div class="inner" id="topnav">
+  <span class="brand">◈ Five Days, Four Temples</span>
+  <a class="nl" href="#plans">Plans</a><a class="nl" href="#thu">Thu 24</a><a class="nl" href="#fri">Fri 25</a><a class="nl" href="#sat">Sat 26</a>
+  <a class="nl" href="#sun">Sun 27</a><a class="nl" href="#mon">Mon 28</a><a class="nl" href="#walk">Walk</a>
+  <a class="nl" href="#costs">Costs</a><a class="nl" href="#ready">Ready?</a><a class="nl" href="#book">Book</a>
+</div></nav>
+
+<header class="hero">
+  <div class="stars" id="stars"></div>
+  <div class="hero-inner">
+    <div class="kicker">Trip Plan · 24–28 December 2026</div>
+    <h1>Five Days, <em>Four Temples</em>,<br>One Night Walk</h1>
+    <p class="sub">Hyderabad → Kanchipuram → Vellore → Tiruvannamalai → home. Sleeper bus out, one train home, temple evenings — and a 14&nbsp;km Girivalam under a moonless sky.</p>
+    <div class="route-chips">
+      <span class="chip"><b>Thu</b> bus 21:15</span><span class="chip"><b>Fri</b> Kamakshi + chariot</span>
+      <span class="chip"><b>Sat</b> Sripuram → walk 21:30</span><span class="chip"><b>Sun</b> darshan 05:30</span>
+      <span class="chip"><b>Mon</b> home 06:50</span>
+    </div>
+    <div class="cd-label" id="cdLabel">Countdown to boarding · Thu 21:15 IST</div>
+    <div class="countdown" id="countdown">
+      <div class="cd"><b id="cdD">–</b><span>days</span></div>
+      <div class="cd"><b id="cdH">–</b><span>hours</span></div>
+      <div class="cd"><b id="cdM">–</b><span>mins</span></div>
+      <div class="cd"><b id="cdS">–</b><span>secs</span></div>
+    </div>
+  </div>
+  <svg class="hero-art" viewBox="0 0 1200 190" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="moong" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffe9a8" stop-opacity=".9"/><stop offset="100%" stop-color="#ffe9a8" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="980" cy="42" r="46" fill="url(#moong)"/>
+    <circle cx="980" cy="42" r="20" fill="#ffedbb"/>
+    <path d="M0 190V150 L60 150V120 L80 120V95 L92 95V70 L100 70V48 L106 48V30 L110 30V18 L114 18V30 L118 30V48 L124 48V70 L132 70V95 L144 95V120 L164 120V150 L230 150V190Z" fill="#0a0a1c"/>
+    <path d="M250 190V160 Q300 160 310 130 L330 130 Q340 160 390 160 V190Z" fill="#0a0a1c"/>
+    <path d="M420 190V150 L470 150V120 L486 120V92 L496 92V66 L502 66V44 L506 44V28 L510 28V44 L514 44V66 L520 66V92 L530 92V120 L546 120V150 L596 150V190Z" fill="#0d0d24"/>
+    <rect x="96" y="100" width="8" height="10" fill="#e8b34b" class="lamp-glow"/>
+    <rect x="498" y="96" width="8" height="10" fill="#e8b34b" class="lamp-glow"/>
+    <path d="M620 190 Q720 90 830 130 Q940 165 1200 110 V190Z" fill="#080816"/>
+    <rect x="120" y="160" width="6" height="12" fill="#e8b34b" class="lamp-glow"/>
+    <rect x="300" y="162" width="6" height="12" fill="#e8b34b" class="lamp-glow"/>
+    <rect x="700" y="168" width="6" height="12" fill="#e8b34b" class="lamp-glow"/>
+    <rect x="900" y="162" width="6" height="12" fill="#e8b34b" class="lamp-glow"/>
+  </svg>
+</header>
+
+<div class="wrap">
+
+  <div class="glance rv">
+    <a class="gcard" href="#thu"><small>Thu 24 Dec</small><b>The Night Bus</b><span>Dinner, FlixBus 21:15, Chennai 08:20</span></a>
+    <a class="gcard fri" href="#fri"><small>Fri 25 Dec</small><b>Kamakshi Day</b><span>Train, Kamakshi, chariot 19:00, silks</span></a>
+    <a class="gcard sat" href="#sat"><small>Sat 26 Dec</small><b>Sripuram → The Walk</b><span>Golden temple, then 14 km at 21:30</span></a>
+    <a class="gcard sun" href="#sun"><small>Sun 27 Dec</small><b>Darshan + Night Bus</b><span>05:30 darshan, rest, sleeper 17:30</span></a>
+    <a class="gcard mon" href="#mon"><small>Mon 28 Dec</small><b>Home</b><span>Hyderabad ~06:00, breakfast 07:30</span></a>
+  </div>
+
+  <div class="journey rv">
+    <h3>The loop</h3>
+    <p>Every leg of the five days, in order.</p>
+    <div class="jmap">
+      <div class="jstop"><b>Hyderabad</b><span>Thu 21:15</span><br><span class="mv">sleeper bus</span></div>
+      <div class="jstop"><b>Chennai</b><span>Fri 08:20</span><br><span class="mv">bus</span></div>
+      <div class="jstop"><b>Kanchipuram</b><span>Fri night</span><br><span class="mv">bus</span></div>
+      <div class="jstop"><b>Vellore · Sripuram</b><span>Sat morning</span><br><span class="mv">bus</span></div>
+      <div class="jstop"><b>Tiruvannamalai</b><span>Sat 21:30 walk</span><br><span class="mv">bus</span></div>
+      <div class="jstop"><b>Tiruvannamalai</b><span>Sun 17:30</span><br><span class="mv">sleeper bus</span></div>
+      <div class="jstop"><b>Home</b><span>Mon ~06:00</span></div>
+    </div>
+  </div>
+
+<!-- ============ PLANS ============ -->
+<section class="block" id="plans">
+  <div class="sec-head"><span class="date">C ★ primary · A · B</span><h2>Choose Your Plan</h2></div>
+  <p class="sec-sub">This page walks Plan C end to end. A and B change only the parts below — Saturday night onward is identical in all plans.</p>
+  <div class="cost-grid rv">
+    <div class="cost-row"><span><b>Plan A — 12670 via Warangal</b> (alternative). Cabs Thu 22:00 → Warangal → train 01:25 → MAS 12:10 → Kanchi 15:15. Bath 16:15, Kamakshi + chariot evening, Saturday Sripuram, 21:30 walk.</span><b>train</b></div>
+    <div class="cost-row"><span><b>Plan B — 17652 via Arakkonam.</b> Thu: board at Kacheguda 17:00 (no Warangal run). Fri: alight <b>Arakkonam 05:28</b> (not Chengalpattu) → bus → Kanchi hotel ~07:00. Bath + breakfast on arrival, rest through the shut-temple hours, then the same Friday evening. No pantry — carry dinner for the train. Book: 17652 + Kanchi hotel with early check-in.</span><b>restful</b></div>
+        <div class="cost-row"><span><b>Plan C — sleeper bus (FlixBus 21:15).</b> (this page) Thu 21:15 HYD → Chennai 08:20 Fri, ~₹1,200 A/C sleeper, 10 lower berths. Kanchi hotel ~10:30; bath, brunch 11:30, Varadharaja 16:00, Kamakshi 17:30, chariot, silk stops (45 + 45 min), dinner 20:30. Saturday keeps Sripuram, 21:30 walk; return direct sleeper Sun 17:30. Book all 20 berths now.</span><b>primary ★</b></div>
+  </div>
+  <div class="link-grid rv" style="margin-top:12px">
+    <a class="btn gold" href="plan-picker.html"><svg><use href="#i-ticket"/></svg><span>Plan picker<small>direct-to-temple trains + buses</small></span></a>
+  </div>
+</section>
+
+<!-- ============ THURSDAY ============ -->
+<section class="block" id="thu">
+  <div class="sec-head"><span class="date">Thursday 24 Dec</span><h2>The Night Bus</h2></div>
+  <p class="sec-sub">Dinner at home, sleeper bus at 21:15, sleep rolling south — Chennai by 08:20.</p>
+  <ol class="timeline">
+    <li class="ev t-food"><span class="dot"><svg><use href="#i-food"/></svg></span><div class="body"><time>19:30</time><h4>Dinner at home <span class="tag">food</span></h4><p>Early dinner — the bus has no pantry. Pack snacks + 1 litre of water each for the night; morning kit (brush, facewash) in the small bag.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bag"/></svg></span><div class="body"><time>20:30</time><h4>Boarding point <span class="tag">pack</span></h4><p>FlixBus boarding — check the exact point on the ticket. Be there by 20:45 for 21:15. 10 lower berths in 5 doubles — screenshot berth numbers.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bus"/></svg></span><div class="body"><time>21:15</time><h4>Board the sleeper to Chennai <span class="tag">bus</span></h4><p>About 11 hours overnight. Sleep. Use the mid-night washroom halt. Valuables stay on you.</p></div></li>
+    <li class="ev t-bath"><span class="dot"><svg><use href="#i-bath"/></svg></span><div class="body"><time>08:20</time><h4>Chennai — CMBT / Kilambakkam <span class="tag">arrive</span></h4><p>Alight at Kilambakkam if the bus halts there — closer to Kanchi. Face-wash at the station washrooms, then the Kanchi bus.</p></div></li>
+  </ol>
+  <div class="note"><b>Why the bus works:</b> no 60-day quota race, no Warangal midnight run, and you board in the city. If the bus is not rolling by 21:15 sharp, every delay eats the Friday bath. Merges are rare in Christmas week; keep the 22:40 in mind till you are rolling.</div>
+</section>
+
+<!-- ============ FRIDAY ============ -->
+<section class="block" id="fri">
+  <div class="sec-head fri"><span class="date">Friday 25 Dec</span><h2>Kamakshi Day</h2></div>
+  <p class="sec-sub">Hotel by 10:30, bath and breakfast, Varadharaja afternoon, Kamakshi evening, two silk stops.</p>
+  <ol class="timeline">
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bus"/></svg></span><div class="body"><time>08:30</time><h4>Bus to Kanchipuram <span class="tag">bus</span></h4><p>About 2 hours from CMBT (~₹70), ~1.5 hours from Kilambakkam. Hotel ~10:30 — early check-in negotiated at booking. Autos to the hotel, ₹80 each, about 3 per auto.</p></div></li>
+    <li class="ev t-bath"><span class="dot"><svg><use href="#i-bath"/></svg></span><div class="body"><time>10:30–11:30</time><h4>Freshen up — bath <span class="tag">bath</span></h4><p>Full bath and change after the bus — the only proper freshen-up between Friday morning and Sunday 03:30. 60 minutes at 3 turns per bathroom (about 15 minutes a turn); last turns go straight to breakfast.</p></div></li>
+    <li class="ev t-food"><span class="dot"><svg><use href="#i-food"/></svg></span><div class="body"><time>11:30–12:15</time><h4>Brunch, hotel (main meal) <span class="tag">food</span></h4><p>One big late-morning meal, ₹150 each — the evening runs on it (dinner 20:30). Then rest — temples are shut till 16:00.</p></div></li>
+    <li class="ev t-rest"><span class="dot"><svg><use href="#i-bed"/></svg></span><div class="body"><time>12:30–15:00</time><h4>Rest <span class="tag">rest</span></h4><p>Sleep properly — the only real rest of the trip. Shops stay open through the temple-shut hours.</p></div></li>
+    <li class="ev t-special"><span class="dot"><svg><use href="#i-shop"/></svg></span><div class="body"><time>15:00–15:45</time><h4>Kanchi shopping — silks, round 1 <span class="tag">shopping</span></h4><p>First silk stop on the temple streets, autos from the hotel. Fix one street and one meeting point; buyers list ready. Back in time for Varadharaja.</p></div></li>
+    <li class="ev t-temple"><span class="dot"><svg><use href="#i-temple"/></svg></span><div class="body"><time>16:00–17:00</time><h4>Varadharaja Perumal <span class="tag">darshan</span></h4><p>Autos (~3 km each way). Margazhi crowds are possible this week — if the queue overflows, cut to a 30-minute darshan; Kamakshi is protected. Back by 17:15.</p></div></li>
+        <li class="ev t-temple"><span class="dot"><svg><use href="#i-temple"/></svg></span><div class="body"><time>17:30–19:00</time><h4>Kamakshi temple <span class="tag">darshan</span></h4><p>Open until about 21:30 on Fridays. Everyone in one queue, so allow the full 90 minutes — an hour for the queue, buffer for the crowd.</p></div></li>
+    <li class="ev t-special"><span class="dot"><svg><use href="#i-lamp"/></svg></span><div class="body"><time>19:00–19:15</time><h4>Golden chariot <span class="tag">don't miss</span></h4><p>Goes round the temple around 19:00. Watch the start of the round — do not leave before it appears.</p></div></li>
+    <li class="ev t-special"><span class="dot"><svg><use href="#i-shop"/></svg></span><div class="body"><time>19:15–20:00</time><h4>Kanchi shopping — silks, optional <span class="tag">shopping</span></h4><p>45 minutes on the temple streets — fix one street and one meeting point so nobody scatters. Decide buyers beforehand; anyone tired heads back to rest before dinner.</p></div></li>
+    <li class="ev t-food"><span class="dot"><svg><use href="#i-food"/></svg></span><div class="body"><time>20:30</time><h4>Dinner, Kanchipuram <span class="tag">food</span></h4><p>₹180 each. Then walk back and sleep — no phones after 21:15.</p></div></li>
+    <li class="ev t-rest"><span class="dot"><svg><use href="#i-bed"/></svg></span><div class="body"><time>21:15</time><h4>Sleep <span class="tag">rest</span></h4><p>A full night — 8 hours. The only full night of the trip.</p></div></li>
+  </ol>
+  <div class="rule"><b>Late-bus variant</b> (arrival after 12:00): bath on arrival, lunch shifts +60, rest shrinks. Cut in this order — shopping, Varadharaja, bath→face-wash. Kamakshi and the 19:00 chariot are protected last.</div>
+</section>
+
+<!-- ============ SATURDAY ============ -->
+<section class="block" id="sat">
+  <div class="sec-head sat"><span class="date">Saturday 26 Dec</span><h2>Sripuram, Then the Walk</h2></div>
+  <p class="sec-sub">Golden temple in the morning, Tiruvannamalai by evening, a short sleep — then 14 km on foot.</p>
+  <ol class="timeline">
+    <li class="ev t-bath"><span class="dot"><svg><use href="#i-bath"/></svg></span><div class="body"><time>05:30–06:30</time><h4>Wake, freshen up — bath <span class="tag">bath</span></h4><p>Morning bath and pack — wake in room order so the bathrooms pipeline from 05:30. 60 minutes at 3 turns per bathroom (about 15 minutes a turn); last turns finish by 06:45. Checkout is 07:45 and today ends at 03:30 Sunday.</p></div></li>
+    <li class="ev t-food"><span class="dot"><svg><use href="#i-food"/></svg></span><div class="body"><time>07:00</time><h4>Breakfast, hotel <span class="tag">food</span></h4><p>Ordered the night before. ₹100 each. If the hotel does not do breakfast, the tiffin shops near the bus stand open at 06:30.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bag"/></svg></span><div class="body"><time>07:45</time><h4>Check out <span class="tag">pack</span></h4><p>Bags stay with you from here until 16:10. Autos to the bus stand, about 3 per auto.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bus"/></svg></span><div class="body"><time>08:00</time><h4>Bus to Vellore <span class="tag">bus</span></h4><p>1.5–2 hours, ₹55, every 30–60 minutes. Get off at Vellore new bus stand.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-auto"/></svg></span><div class="body"><time>09:50</time><h4>Autos to Sripuram <span class="tag">autos</span></h4><p>20 minutes, ₹150 an auto, about 3 per auto. Leave phones and bags in the free cloakroom — nothing goes past the gate, and bags take a while.</p></div></li>
+    <li class="ev t-temple"><span class="dot"><svg><use href="#i-temple"/></svg></span><div class="body"><time>10:15–12:00</time><h4>Sripuram darshan <span class="tag">darshan</span></h4><p>Open 08:00–20:00, free. The star path is about 1 km each way, barefoot. If running late, take the ₹100 shorter queue — protect the 12:45 autos, not the darshan.</p></div></li>
+    <li class="ev t-food"><span class="dot"><svg><use href="#i-food"/></svg></span><div class="body"><time>12:00</time><h4>Lunch at Sripuram <span class="tag">food</span></h4><p>The annadanam hall serves free meals through the middle of the day. Eat quickly, autos leave at 12:45. If it is shut, the veg restaurants on the road back to the bus stand are ₹150 each.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-auto"/></svg></span><div class="body"><time>12:45</time><h4>Autos to the bus stand <span class="tag">autos</span></h4><p>20 minutes. Fill water bottles here — the next stop is 16:00.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bus"/></svg></span><div class="body"><time>13:15</time><h4>Bus to Tiruvannamalai <span class="tag">bus</span></h4><p>2.5–3 hours, ₹180, every 30–45 minutes. This is the last bus that gets you in before dark.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bed"/></svg></span><div class="body"><time>16:00</time><h4>Tiruvannamalai <span class="tag">arrive</span></h4><p>Hotel near the east Rajagopuram, walking distance from where the walk starts.</p></div></li>
+    <li class="ev t-bath"><span class="dot"><svg><use href="#i-bath"/></svg></span><div class="body"><time>16:10–16:50</time><h4>Check in, freshen up, change <span class="tag">face wash</span></h4><p>Quick face wash and into fresh walking clothes after the bus — dinner is at 17:00 sharp, then sleep. Count the bathrooms on arrival — that number is what the rest of the night is built on.</p></div></li>
+    <li class="ev t-food"><span class="dot"><svg><use href="#i-food"/></svg></span><div class="body"><time>17:00</time><h4>Dinner at the hotel <span class="tag">food</span></h4><p>Call the order through from the bus around 15:00 so food is on the table at 17:00. ₹150 each. Rice, sambar, curd, vegetables — nothing fried, nothing heavy. This is the meal you walk 14 km on.</p></div></li>
+    <li class="ev t-rest"><span class="dot"><svg><use href="#i-bed"/></svg></span><div class="body"><time>17:30–21:00</time><h4>Sleep, 3½ hours <span class="tag">rest</span></h4><p>Set two alarms. The next real sleep is 08:15 on Sunday.</p></div></li>
+    <li class="ev t-walk"><span class="dot"><svg><use href="#i-moon"/></svg></span><div class="body"><time>21:00</time><h4>Wake, tea, get ready <span class="tag">ready</span></h4><p>Torch, one litre of water each, slippers, and a biscuit in the pocket for 03:00.</p></div></li>
+    <li class="ev t-walk"><span class="dot"><svg><use href="#i-walk"/></svg></span><div class="body"><time>21:30</time><h4>Start Girivalam <span class="tag">14 km</span></h4><p>From the east Rajagopuram. 14 km, keep the hill on your right. 5–6 hours for the group — the pace that counts is the slowest person's.</p></div></li>
+  </ol>
+  <div class="rule"><b>Delay rule:</b> if the group is not on the Vellore bus by 08:30, cut Sripuram — take the direct bus to Tiruvannamalai instead (about 3 hours) and bank the extra rest before the walk. A delayed Sripuram squeezes the 13:15 bus and the whole night unravels; the walk matters more.</div>
+</section>
+
+<!-- ============ SUNDAY ============ -->
+<section class="block" id="sun">
+  <div class="sec-head sun"><span class="date">Sunday 27 Dec</span><h2>Darshan + Night Bus</h2></div>
+  <p class="sec-sub">Bathe, 05:30 darshan, rest the whole day — then one sleeper straight home.</p>
+  <ol class="timeline">
+    <li class="ev t-walk"><span class="dot"><svg><use href="#i-walk"/></svg></span><div class="body"><time>02:30–03:30</time><h4>Back at the hotel <span class="tag">finish</span></h4><p>Five hours if you keep a steady pace, six if you stop everywhere. People arrive spread over that hour, so the bathing queue starts as each room lands.</p></div></li>
+    <li class="ev t-bath"><span class="dot"><svg><use href="#i-bath"/></svg></span><div class="body"><time>03:30–05:10</time><h4>Bath and change <span class="tag">bath</span></h4><p>Bathrooms rotate, about 15 minutes a turn. This is the block that decides the 21:30 start. If bathrooms work out to fewer than one per room: dinner 16:30, sleep 17:00–20:30, wake and start the walk at 21:00.</p></div></li>
+    <li class="ev t-temple"><span class="dot"><svg><use href="#i-temple"/></svg></span><div class="body"><time>05:20</time><h4>Walk to the temple <span class="tag">temple</span></h4><p>Ten minutes from the east gate. Clean clothes, no bags, no phones.</p></div></li>
+    <li class="ev t-temple"><span class="dot"><svg><use href="#i-temple"/></svg></span><div class="body"><time>05:30–07:30</time><h4>Arunachaleswarar darshan <span class="tag">darshan</span></h4><p>Temple opens 05:30. The group will not stay together in the queue — fix a meeting point outside and a time, 07:30.</p></div></li>
+    <li class="ev t-food"><span class="dot"><svg><use href="#i-food"/></svg></span><div class="body"><time>07:30</time><h4>Breakfast, Car Street <span class="tag">food</span></h4><p>The veg places near the east gate are open by 06:30. Idli, pongal, vada, filter coffee, ₹80 each. A large group at one sitting is a lot — split across nearby shops, or send someone ahead to order.</p></div></li>
+    <li class="ev t-rest"><span class="dot"><svg><use href="#i-bed"/></svg></span><div class="body"><time>08:15–10:00</time><h4>Sleep, 1¾ hours <span class="tag">rest</span></h4><p>Back in the same rooms. This is the sleep you do not get between the walk and darshan.</p></div></li>
+    <li class="ev t-bath"><span class="dot"><svg><use href="#i-bath"/></svg></span><div class="body"><time>10:00–10:15</time><h4>Face wash <span class="tag">rest</span></h4><p>Quick face wash — rooms are held till 17:00 (day rate negotiated at booking), bags stay put.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bus"/></svg></span><div class="body"><time>10:15–13:00</time><h4>Rest in rooms <span class="tag">rest</span></h4><p>Sleep off the walk. Rooms held till 17:00 — this rest is what the night walk costs.</p></div></li>
+    <li class="ev t-food"><span class="dot"><svg><use href="#i-food"/></svg></span><div class="body"><time>13:00</time><h4>Lunch, hotel / town <span class="tag">food</span></h4><p>₹150 each. Eat well — bus dinner halt is ~20:00.</p></div></li>
+    <li class="ev t-rest"><span class="dot"><svg><use href="#i-bed"/></svg></span><div class="body"><time>14:00–16:30</time><h4>Rest <span class="tag">rest</span></h4><p>Final sleep top-up before the bus.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bag"/></svg></span><div class="body"><time>16:30</time><h4>Wash, pack, check out <span class="tag">pack</span></h4><p>Bags together. Autos to the boarding point.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-ticket"/></svg></span><div class="body"><time>17:00</time><h4>Boarding point <span class="tag">pack</span></h4><p>Confirm the exact point on the ticket; be there 30 minutes early. 10 lower berths.</p></div></li>
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bus"/></svg></span><div class="body"><time>17:30</time><h4>Board the direct sleeper to Hyderabad <span class="tag">bus</span></h4><p>About 12–13 hours overnight. Dinner halt ~20:00 at a highway restaurant — eat there. Then sleep.</p></div></li>
+  </ol>
+</section>
+
+<!-- ============ MONDAY ============ -->
+<section class="block" id="mon">
+  <div class="sec-head mon"><span class="date">Monday 28 Dec</span><h2>Home</h2></div>
+  <p class="sec-sub">Off the bus, autos home, breakfast. Done.</p>
+  <ol class="timeline">
+    <li class="ev t-travel"><span class="dot"><svg><use href="#i-bus"/></svg></span><div class="body"><time>06:00</time><h4>Hyderabad <span class="tag">home</span></h4><p>Off the bus. Autos or cabs home.</p></div></li>
+    <li class="ev t-food"><span class="dot"><svg><use href="#i-food"/></svg></span><div class="body"><time>07:30</time><h4>Breakfast at home <span class="tag">done</span></h4><p>Done.</p></div></li>
+  </ol>
+</section>
+
+<!-- ============ WALK ============ -->
+<section class="block" id="walk">
+  <div class="sec-head"><span class="date">Sat 21:30 → Sun 03:30</span><h2>The 14 km Walk</h2></div>
+  <div class="night rv">
+    <h3>Girivalam, under a moonless sky</h3>
+    <p>Start at the east Rajagopuram, keep the hill on your right, one road all the way round. 5–6 hours — the stops set the pace, not the walking. The last full moon was 23–24 December, so don't expect the road lit or crowded.</p>
+    <svg class="giri" viewBox="0 0 600 240" aria-hidden="true">
+      <circle cx="470" cy="40" r="17" fill="none" stroke="#8f86c9" stroke-width="2"/>
+      <circle cx="470" cy="40" r="26" fill="none" stroke="#8f86c9" stroke-width="1" opacity=".4"/>
+      <path d="M300 200 Q300 120 360 105 Q420 90 430 150 Q435 185 400 200Z" fill="#17173a" stroke="#e8b34b" stroke-width="1.5"/>
+      <path d="M365 105 l6 -22 6 22 z" fill="#e8b34b"/>
+      <ellipse cx="300" cy="205" rx="240" ry="16" fill="none" stroke="#e8b34b" stroke-width="2.5" class="path"/>
+      <circle cx="80" cy="205" r="7" fill="#e8b34b"/>
+      <text x="52" y="188" fill="#e8b34b" font-size="12" font-weight="bold">START</text>
+      <text x="248" y="150" fill="#cfc6ec" font-size="12">the hill stays on your right</text>
+      <text x="330" y="228" fill="#8f86c9" font-size="12">14 km · ~7 km halfway near Adi Annamalai</text>
+      <circle cx="300" cy="221" r="5" fill="none" stroke="#8f86c9" stroke-width="2"/>
+    </svg>
+    <ul class="walk-tips">
+      <li><b>Start 21:30 sharp</b> — six hours walking + 90 min of baths = the 05:30 temple gate. Only a 21:30 start adds up.</li>
+      <li><b>Bathe at the hotel, not the temple.</b> Clean clothes for darshan; nobody goes in dusty.</li>
+      <li><b>Halfway rule:</b> not halfway by 00:30 → turn back. The loop back is still the full 14 km.</li>
+      <li><b>Stay together-ish:</b> one person with the slowest walker, regroup at halfway. The group strings over a kilometre.</li>
+      <li><b>Carry:</b> 1 litre of water each, a torch, a biscuit for 03:00. Slippers — it's asphalt.</li>
+      <li><b>Walk only if fit.</b> The day started at 05:30 on a 3½-hour nap — anyone unwell sits it out. No shame in it.</li>
+    </ul>
+  </div>
+  <ol class="timeline" style="margin-top:18px">
+    <li class="ev t-walk"><span class="dot"><svg><use href="#i-walk"/></svg></span><div class="body"><time>pace</time><h4>Time <span class="tag">5–6 hrs</span></h4><p>14 km at 2.5 km/h is 5.6 hours — and the stops at the eight lingams and the two Ganesh shrines set the pace, not the walking.</p></div></li>
+    <li class="ev t-rest"><span class="dot"><svg><use href="#i-bed"/></svg></span><div class="body"><time>before</time><h4>Sleep 17:30–21:00 first <span class="tag">rest</span></h4><p>Three and a half hours, then walk. There is no gap for sleep between the walk and darshan — it comes afterwards, 08:15 to 10:00.</p></div></li>
+  </ol>
+</section>
+
+<!-- ============ COSTS ============ -->
+<section class="block" id="costs">
+  <div class="sec-head"><span class="date">Per person · Plan C</span><h2>Travel Costs</h2></div>
+  <p class="sec-sub">Transport only — no hotels, no food.</p>
+  <div class="cost-grid rv">
+    <div class="cost-row"><span>Sleeper bus, HYD → Chennai (FlixBus 21:15, verified live)</span><b>₹1,200</b></div>
+        <div class="cost-row"><span>Chennai → Kanchipuram bus</span><b>₹100</b></div>
+    <div class="cost-row"><span>Kanchipuram → Vellore bus</span><b>₹55</b></div>
+    <div class="cost-row"><span>Vellore → Tiruvannamalai bus</span><b>₹180</b></div>
+        <div class="cost-row"><span>Direct sleeper, Tiruvannamalai → Hyderabad</span><b>~₹1,600</b></div>
+    <div class="cost-row"><span>Autos + local transfers</span><b>₹300</b></div>
+    <div class="cost-row total"><b>Travel per person</b><b>≈₹3,435</b></div>
+  </div>
+  <div class="note">Outbound fare pulled live 4 Nov; return sleeper is Christmas-estimate — recheck both at booking. No trains in either direction. Transport only — no hotels, no food.</div>
+</section>
+
+<!-- ============ READY ============ -->
+<section class="block" id="ready">
+  <div class="sec-head"><span class="date">Checklist</span><h2>Before You Go</h2></div>
+  <p class="sec-sub">Eleven things worth knowing.</p>
+  <ol class="check">
+    <li><b>Book the bus berths now.</b> Christmas sleepers sell out; FlixBus inventory is open while most operators load ~30 days out. 10 berths, lower deck, one bus.</li>
+    <li><b>Book the return bus too.</b> Same ~24 Nov window as outbound — same operator if possible, one thread for all 20 berths.</li>
+    <li><b>FlixBus merges half-full trips.</b> Prefer the mid-pack 21:15; screenshot berth numbers; keep the 22:40 in mind till you are rolling.</li>
+    <li><b>The bathrooms are the real constraint.</b> Book enough rooms at Tiruvannamalai for 3 per bathroom — confirm bathroom count in writing. Below one bathroom per room, the walk moves to 21:00.</li>
+    <li><b>Tell both hotels the same two things:</b> breakfast at the time in the table, and the checkout time you need.</li>
+    <li><b>Return dinner is the ~20:00 highway halt.</b> Eat there properly and carry night snacks — nothing after.</li>
+    <li><b>Buses have zero buffer.</b> A 2-hour-late bus eats the bath — same cut order as the late-bus variant; never Kamakshi or the chariot.</li>
+    <li><b>Agree a meeting point before the darshan queue.</b> The group will be separated by the crowd. Outside the east gate at 07:30 is enough.</li>
+    <li><b>Sripuram:</b> no phones, no bags, and the star path is barefoot. Free cloakroom at the gate — bags will take a while, so allow for it.</li>
+    <li><b>Kanchipuram temples close about 12:15–16:00.</b> That is why Friday is Varadharaja 16:00, then Kamakshi and the chariot — and why the 11:30 brunch is the main meal.</li>
+    <li><b>The return bus boards in Tiruvannamalai town, not at any station.</b> Confirm the exact point on the ticket; be there 30 minutes early.</li>
+  </ol>
+</section>
+
+<!-- ============ LINKS + BOOK ============ -->
+<section class="block" id="links">
+  <div class="sec-head"><span class="date">Tap to open</span><h2>Links</h2></div>
+  <div class="link-grid rv">
+    <a class="btn gold" href="https://www.irctc.co.in/"><svg><use href="#i-ticket"/></svg><span>IRCTC<small>train booking</small></span></a>
+    <a class="btn" href="https://erail.in/train-enquiry/12670"><svg><use href="#i-train"/></svg><span>12670<small>Warangal → Chennai</small></span></a>
+    <a class="btn" href="https://erail.in/train-enquiry/12759"><svg><use href="#i-train"/></svg><span>12759<small>Beach → Secunderabad</small></span></a>
+    <a class="btn" href="https://www.tnstc.in/"><svg><use href="#i-bus"/></svg><span>TNSTC<small>bus booking</small></span></a>
+    <a class="btn" href="https://enquiry.indianrail.gov.in/"><svg><use href="#i-ticket"/></svg><span>NTES<small>live train status</small></span></a>
+    <a class="btn" href="https://kanchikamakshi.org/"><svg><use href="#i-temple"/></svg><span>Kamakshi<small>Kanchipuram</small></span></a>
+    <a class="btn" href="https://sripuram.org/"><svg><use href="#i-temple"/></svg><span>Sripuram<small>Vellore</small></span></a>
+    <a class="btn" href="https://annamalaiyar.hrce.tn.gov.in/"><svg><use href="#i-temple"/></svg><span>Arunachaleswarar<small>Tiruvannamalai</small></span></a>
+  </div>
+</section>
+
+<section class="block" id="book">
+  <div class="sec-head"><span class="date">Reserve first</span><h2>Book These</h2></div>
+  <div class="book rv">
+    <div class="brow"><span class="when">Thu 24 · 21:15</span><span><b class="t">FlixBus sleeper, Hyderabad → Chennai</b><br>A/C sleeper ~₹1,200, 10 lower berths in 5 doubles. Screenshot berth numbers.</span></div>
+    <div class="brow"><span class="when">Fri 25 · 1 night</span><span><b class="t">Hotel, Kanchipuram</b><br>Enough rooms near Kamakshi temple for 3 per bathroom. Tell them the group arrives ~10:30 and needs breakfast on arrival (~11:30).</span></div>
+    <div class="brow"><span class="when">Sat 26 · 1 night</span><span><b class="t">Hotel, Tiruvannamalai</b><br>Rooms near the east Rajagopuram for 3 per bathroom. Confirm bathroom count in writing — that number decides the whole night. Checkout 10:15 Sunday.</span></div>
+    <div class="brow"><span class="when">Sun 27 · 17:30</span><span><b class="t">Direct sleeper, Tiruvannamalai → Hyderabad</b><br>A/C sleeper ~₹1,600, 10 lower berths. Overnight to ~06:00 Monday.</span></div>
+  </div>
+  <div class="note">Bus berths: FlixBus inventory is open now; most operators load ~30 days out (~24 Nov) — book 10 lowers the day inventory opens. Return sleeper opens ~30 days out like outbound — book both the same week. Re-check everything the week before travel.</div>
+</section>
+
+<footer>
+  Outbound bus times and fares pulled live from FlixBus on 4 November 2026. Train times from erail.in, 3 November 2026. Local bus times from TNSTC route pages. Temple hours from the temples' own sites. Fares are estimates — confirm when you book. Re-check the trains and the temple timings in the week before you travel.<br><br>
+  Five Days, Four Temples · 24–28 December 2026.
+</footer>
+
+</div>
+
+<button id="toTop" title="Back to top" aria-label="Back to top">↑</button>
+
+<script>
+// stars
+(function(){
+  const box=document.getElementById('stars');
+  for(let i=0;i<70;i++){
+    const s=document.createElement('i');
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*70+'%';
+    s.style.animationDelay=(Math.random()*3)+'s';
+    s.style.animationDuration=(2+Math.random()*3)+'s';
+    box.appendChild(s);
+  }
+})();
+// countdown to Thu 24 Dec 2026 22:00 IST
+(function(){
+  const target=new Date('2026-12-24T21:15:00+05:30').getTime();
+  const D=document.getElementById('cdD'),H=document.getElementById('cdH'),
+        M=document.getElementById('cdM'),S=document.getElementById('cdS'),
+        L=document.getElementById('cdLabel');
+  function tick(){
+    const d=target-Date.now();
+    if(d<=0){L.textContent='Wheels up — have a great trip!';D.textContent=H.textContent=M.textContent=S.textContent='0';return;}
+    D.textContent=Math.floor(d/864e5);
+    H.textContent=String(Math.floor(d/36e5)%24).padStart(2,'0');
+    M.textContent=String(Math.floor(d/6e4)%60).padStart(2,'0');
+    S.textContent=String(Math.floor(d/1e3)%60).padStart(2,'0');
+  }
+  tick();setInterval(tick,1000);
+})();
+// scroll reveal
+(function(){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});
+  document.querySelectorAll('.ev,.rv,.check li').forEach(el=>io.observe(el));
+})();
+// progress + nav highlight + to-top
+(function(){
+  const bar=document.getElementById('progress'),top=document.getElementById('toTop');
+  const links=[...document.querySelectorAll('#topnav a.nl')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  function onScroll(){
+    const h=document.documentElement;
+    bar.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+    top.style.display=h.scrollTop>700?'block':'none';
+    let cur=0;
+    secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<120)cur=i;});
+    links.forEach((a,i)=>a.classList.toggle('active',i===cur));
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  top.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+})();
+</script>
+</body>
+</html>

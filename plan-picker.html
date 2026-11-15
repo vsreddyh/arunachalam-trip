@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyderabad → Arunachalam · 24–28 Dec 2026 · Plan picker</title>
+<style>
+  :root{
+    --paper:#f6f1e7; --card:#fffdf8; --ink:#221c17; --muted:#6f635a;
+    --line:#e4d9c9; --line-2:#efe6d8;
+    --saffron:#b45309; --saffron-soft:#fbeedb;
+    --teal:#0f766e; --teal-soft:#e3f2ef;
+    --green:#15803d; --green-soft:#e7f3e9;
+    --amber:#a16207; --amber-soft:#fbf1d9;
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#161210; --card:#201a15; --ink:#f3ece1; --muted:#a99a8b;
+      --line:#332a22; --line-2:#2a231d;
+      --saffron:#f0a44b; --saffron-soft:#2c2013;
+      --teal:#5cc4b6; --teal-soft:#122522;
+      --green:#67c07f; --green-soft:#122418;
+      --amber:#e0b355; --amber-soft:#2a2113;
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; line-height:1.45;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 64px}
+  h1,h2{margin:0;font-weight:650;letter-spacing:-.01em}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:600;margin:44px 0 14px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  h2 span{font-size:12px;letter-spacing:.04em;text-transform:none;opacity:.8;font-weight:500}
+  p{margin:0}
+
+  header{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding-bottom:26px}
+  .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--saffron);font-weight:700}
+  h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(30px,6vw,44px);line-height:1.06;margin:8px 0 6px;font-weight:600}
+  .sub{color:var(--muted);font-size:14px}
+  .hill{position:absolute;right:-10px;top:6px;width:170px;opacity:.16;pointer-events:none}
+  .stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:12.5px;color:var(--muted)}
+  .stat b{color:var(--ink);font-weight:650}
+
+  /* ---------- picker ---------- */
+  .picker{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+  .picker label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;display:block;margin-bottom:8px}
+  .selrow{display:flex;gap:8px}
+  .selrow button.nav{flex:0 0 44px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font-size:18px;cursor:pointer}
+  .selrow button.nav:hover{border-color:var(--saffron);color:var(--saffron)}
+  .selgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .selgrid label{margin-bottom:6px}
+  .hint{display:block;font-size:11px;color:var(--muted);margin-top:5px}
+  #shareBtn{margin-top:10px;font-size:12.5px;font-weight:650;color:var(--saffron);background:transparent;border:1px dashed var(--saffron);border-radius:999px;padding:7px 14px;cursor:pointer}
+  #shareBtn:hover{background:var(--saffron-soft)}
+  .wincheck{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--muted);margin-top:10px;cursor:pointer}
+  .wincheck input{accent-color:var(--saffron);margin-top:2px}
+  .picker select{
+    flex:1;min-width:0;font-size:15px;font-weight:650;color:var(--ink);
+    background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;
+    appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23b45309' stroke-width='2' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat;background-position:right 12px center;padding-right:34px;
+  }
+  .tagrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:12px}
+  .pill{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+  .pill.good{background:var(--saffron);color:#fff}
+  .pill.win{background:var(--green-soft);color:var(--green)}
+  .pill.late{background:var(--amber-soft);color:var(--amber)}
+  .tag{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 8px}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .leg2{background:var(--paper);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px}
+  .leg2 h4{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+  .leg2 h4.train{color:var(--saffron)}
+  .leg2 h4.bus{color:var(--teal)}
+  .step{display:grid;grid-template-columns:66px 1fr;gap:8px;font-size:13px;padding:6px 0;border-top:1px dotted var(--line)}
+  .step:first-of-type{border-top:0}
+  .step .tm{font-variant-numeric:tabular-nums;font-weight:700}
+  .step .pl small{display:block;color:var(--muted);font-size:11.5px}
+  .tno{color:var(--amber);font-weight:700}
+  .step .pl b{display:block}
+  .step .pl{overflow-wrap:normal;word-break:normal}
+
+  .cost{margin-top:14px;border:1px solid var(--line-2);border-radius:12px;overflow:hidden}
+  .stay{display:flex;justify-content:space-between;gap:10px;align-items:center;background:var(--teal-soft);border-radius:12px;padding:10px 14px;margin-top:14px}
+  .stay small{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block}
+  .stay b{font-size:13px}
+  .stayfree{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 16px;flex:0 0 auto}
+  .stayfree b{color:var(--teal);font-size:14px}
+  .stayfree small{color:var(--muted)}  .crow{display:grid;grid-template-columns:1fr 92px 92px;gap:8px;font-size:12.5px;padding:7px 14px;border-bottom:1px dotted var(--line-2);align-items:center}
+  .crow:last-child{border-bottom:0}
+  .crow.head{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .crow span:nth-child(2),.crow span:nth-child(3){text-align:right;font-variant-numeric:tabular-nums}
+  .crow.total{background:var(--saffron-soft);font-weight:700}
+  .crow.total span:nth-child(2),.crow.total span:nth-child(3){color:var(--ink)}
+  .note{font-size:12.5px;color:var(--muted);margin-top:12px}
+  .note b{color:var(--ink)}
+
+  /* ---------- comparison table ---------- */
+  .cmp{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .cmprow{display:grid;grid-template-columns:146px 1fr 1fr 62px 84px 84px;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line-2);font-size:12.5px;cursor:pointer}
+  .cmprow:last-child{border-bottom:0}
+  .cmprow.head{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);cursor:default;padding:10px 14px 6px}
+  .cmprow:not(.head):hover{background:var(--paper)}
+  .cmprow.sel{background:var(--saffron-soft);box-shadow:inset 3px 0 0 var(--saffron)}
+  .cmprow .pn b{display:block;font-size:13px}
+  .cmprow .pn small{color:var(--muted);font-size:11px}
+  .cmprow .via{color:var(--muted);font-size:12px}
+  .cmprow .via b{color:var(--ink);font-weight:600}
+  .cell{text-align:right}
+  .cell b{display:block;font-variant-numeric:tabular-nums;font-size:13.5px}
+  .cell .cbar{display:block;height:5px;border-radius:99px;background:var(--line-2);margin-top:4px;overflow:hidden}
+  .cell .cbar i{display:block;height:100%;border-radius:99px}
+  .cell.lean .cbar i{background:var(--teal)}
+  .cell.rich .cbar i{background:var(--saffron)}
+  .cell small{color:var(--muted);font-size:10.5px;display:block}
+  .crown{font-size:10px;color:var(--green);font-weight:700}
+
+  .callout{margin-top:16px;border-left:3px solid var(--saffron);background:var(--saffron-soft);border-radius:0 var(--radius) var(--radius) 0;padding:13px 16px;font-size:13px}
+  .callout .lbl{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--saffron);margin-bottom:3px;font-weight:700}
+
+  .days{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .day{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px}
+  .day .n{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--saffron);font-weight:700}
+  .day .d{font-size:13.5px;font-weight:650;margin:1px 0 6px}
+  .day p{font-size:12.5px;color:var(--muted)}
+  .fest{border-left:3px solid var(--saffron);background:var(--saffron-soft);border-radius:0 var(--radius) var(--radius) 0;padding:11px 14px;font-size:13px}
+  .fest b{color:var(--saffron)}
+  .rush{height:6px;border-radius:99px;background:var(--line-2);margin-top:10px;overflow:hidden}
+  .rush i{display:block;height:100%;border-radius:99px;background:var(--teal)}
+  .rl{font-size:11px !important;font-weight:700;color:var(--teal) !important;margin-top:4px !important}
+
+  .box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px}
+  .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .lgroup{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px}
+  .lgroup h4{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+  .lgroup a{display:block;font-size:13px;padding:4px 0;border:0}
+  ul.clean{margin:0;padding-left:16px;font-size:12.8px;color:var(--muted);line-height:1.55}
+  ul.clean li{margin-bottom:5px}
+  ul.clean b{color:var(--ink);font-weight:600}
+  a{color:var(--saffron);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--saffron) 35%,transparent)}
+  footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+
+  @media (max-width:680px){
+    .cols{grid-template-columns:1fr}
+    .selgrid{grid-template-columns:1fr}
+    .cmprow{grid-template-columns:1fr 56px 72px 72px;gap:8px}
+    .cmprow .via{display:none}
+    .cmprow.head span:nth-child(2),.cmprow.head span:nth-child(3){display:none}
+    .crow{grid-template-columns:1fr 80px 80px}
+    .stay{flex-wrap:wrap}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <svg class="hill" viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M2 112 L62 30 L92 68 L112 44 L152 112 Z" stroke-linejoin="round"></path>
+      <path d="M96 112 L140 58 L182 112" stroke-linejoin="round"></path>
+    </svg>
+    <div class="eyebrow">Trip plans · Hyderabad → Arunachalam · 24–28 Dec 2026</div>
+    <h1>Pick your plan</h1>
+    <p class="sub">Every combination: 40 ways out × 34 ways back. Lean = sleeper + ordinary bus · Comfortable = 3A + AC bus.</p>
+    <div class="stats">
+      <div class="stat"><b id="stN">1360</b> combinations</div>
+      <div class="stat">lean from <b id="stL">₹930</b></div>
+      <div class="stat">comfortable from <b id="stC">₹2,390</b></div>
+      <div class="stat">home by <b>28 Dec</b> morning, all plans</div>
+    </div>
+  </header>
+
+  <h2>Your plan <span>use the two dropdowns</span></h2>
+  <div class="picker">
+    <label>Choose going and coming back</label>
+    <div class="selgrid">
+      <div><label for="outSel">Going · Thu 24 – Fri 25</label><select id="outSel"><optgroup label="Trains · Thu 24"><option value="19">Thu 24 · 5:55 AM · 17406 Tirupati — ₹590 / ₹1,330</option><option value="20">Thu 24 · 8:55 AM · 12708 Tirupati — ₹590 / ₹1,330</option><option value="21">Thu 24 · 9:05 AM · 17418 Tirupati — ₹590 / ₹1,330</option><option value="0">Thu 24 · 2:25 PM · Sabari — ₹540 / ₹1,280</option><option value="22">Thu 24 · 5:15 PM · 12794 Tirupati — ₹590 / ₹1,330</option><option value="23">Thu 24 · 5:30 PM · 12734 Tirupati — ₹590 / ₹1,330</option><option value="24">Thu 24 · 5:30 PM · 12766 Tirupati — ₹590 / ₹1,330</option><option value="3">Thu 24 · 5:50 PM · Spl direct — ₹405 / ₹1,110</option><option value="1">Thu 24 · 6:00 PM · Chennai — ₹644 / ₹1,450</option><option value="25">Thu 24 · 6:40 PM · 12764 Tirupati — ₹590 / ₹1,330</option><option value="26">Thu 24 · 8:05 PM · 12797 Tirupati — ₹590 / ₹1,330</option></optgroup><optgroup label="Trains · Fri 25"><option value="16" selected="selected">Fri 25 · 6:05 AM · 12789 Katpadi Fri — ₹540 / ₹1,280</option><option value="2">Fri 25 · 2:25 PM · Sabari — ₹540 / ₹1,280</option><option value="18">Fri 25 · 4:20 PM · 17444 Tirupati Fri — ₹590 / ₹1,330</option><option value="17">Fri 25 · 5:00 PM · 17653 Villupuram Fri — ₹540 / ₹1,340</option><option value="27">Fri 25 · 5:40 PM · 12770 Tirupati Fri — ₹590 / ₹1,330</option><option value="28">Fri 25 · 7:05 PM · 17434 Tirupati Fri — ₹590 / ₹1,330</option></optgroup><optgroup label="Buses · Thu 24"><option value="6">Thu 24 · 4:35 PM · Rainbow 4:35 PM — ₹2,283 / ₹2,283</option><option value="4">Thu 24 · 5:45 PM · Mythri 5:45 PM — ₹2,059 / ₹2,059</option><option value="9">Thu 24 · 5:45 PM · V Kaveri 5:45 PM — ₹3,200 / ₹3,200</option><option value="7">Thu 24 · 6:15 PM · Rainbow 6:15 PM — ₹1,933 / ₹1,933</option><option value="14">Thu 24 · 6:20 PM · VSR 6:20 PM — ₹3,999 / ₹3,999</option><option value="13">Thu 24 · 6:30 PM · BSR 6:30 PM — ₹3,480 / ₹3,480</option><option value="8">Thu 24 · 6:30 PM · Jagan 6:30 PM — ₹2,033 / ₹2,033</option><option value="11">Thu 24 · 7:40 PM · FlixBus 7:40 PM — ₹1,637 / ₹1,637</option><option value="12">Thu 24 · 7:45 PM · Pramukh 7:45 PM — ₹2,419 / ₹2,419</option><option value="10">Thu 24 · 8:20 PM · LG 8:20 PM — ₹1,839 / ₹1,839</option></optgroup><optgroup label="Buses · Fri 25"><option value="29">Fri 25 · 7:40 PM · FlixBus 7:40 PM — ₹3,332 / ₹3,332</option><option value="30">Fri 25 · 6:20 PM · VSR 6:20 PM — ₹3,999 / ₹3,999</option><option value="31">Fri 25 · 5:45 PM · Mythri 5:45 PM — ₹2,509 / ₹2,509</option><option value="32">Fri 25 · 6:45 PM · Mythri 6:45 PM — ₹2,879 / ₹2,879</option><option value="33">Fri 25 · 4:35 PM · Rainbow 4:35 PM — ₹3,027 / ₹3,027</option><option value="34">Fri 25 · 6:15 PM · Rainbow 6:15 PM — ₹2,362 / ₹2,362</option><option value="35">Fri 25 · 6:30 PM · Jagan 6:30 PM — ₹2,825 / ₹2,825</option><option value="36">Fri 25 · 5:45 PM · V Kaveri 5:45 PM — ₹3,929 / ₹3,929</option><option value="37">Fri 25 · 8:20 PM · LG 8:20 PM — ₹2,680 / ₹2,680</option><option value="38">Fri 25 · 7:45 PM · Pramukh 7:45 PM — ₹3,169 / ₹3,169</option><option value="39">Fri 25 · 6:30 PM · BSR 6:30 PM — ₹4,080 / ₹4,080</option></optgroup></select></div>
+      <div><label for="retSel">Coming back · Sat 26 – Mon 28</label><select id="retSel"><optgroup label="Trains · arr Sun 27"><option value="26">Sun 12:40 PM · 16354 Tirupati — ₹590 / ₹1,330</option><option value="14">Sun 4:00 PM · 17425 Tirupati — ₹590 / ₹1,330</option><option value="21">Sun 8:15 PM · 17405 Tirupati — ₹590 / ₹1,330</option><option value="33">Sun 10:50 PM · 16003 Chennai — ₹644 / ₹1,700</option><option value="19">Sun 11:40 PM · 12790 Katpadi — ₹540 / ₹1,280</option></optgroup><optgroup label="Trains · arr Mon 28"><option value="18">Mon 12:30 AM · 07192 Katpadi — ₹540 / ₹1,280</option><option value="20">Mon 3:45 AM · 07536 Villupuram — ₹525 / ₹1,310</option><option value="15">Mon 4:25 AM · 12769 Tirupati — ₹590 / ₹1,330</option><option value="32">Mon 5:05 AM · Chennai train — ₹644 / ₹1,700</option><option value="22">Mon 5:40 AM · 12793 Tirupati — ₹590 / ₹1,330</option><option value="24" selected="selected">Mon 6:20 AM · 12798 Tirupati — ₹590 / ₹1,330</option><option value="23">Mon 6:45 AM · 12733 Tirupati — ₹590 / ₹1,330</option><option value="25">Mon 7:24 AM · 12731 Tirupati — ₹590 / ₹1,330</option><option value="12">7:55 AM · 17654 Villupuram — ₹540 / ₹1,340</option><option value="11">Mon 8:10 AM · 12759 Chennai — ₹644 / ₹1,700</option><option value="31">Mon 11:02 AM · Sabari train — ₹540 / ₹1,530</option><option value="13">Mon 12:40 PM · 22716 Katpadi — ₹540 / ₹1,280</option><option value="17">Mon 6:30 PM · 07194 Katpadi SPL — ₹540 / ₹1,280</option><option value="16">Mon 9:25 PM · 17433 Tirupati — ₹590 / ₹1,330</option></optgroup><optgroup label="Buses · arr Sun 27"><option value="29">Sun 7:50 AM · FlixBus 6:15 PM — ₹3,332 / ₹3,332</option><option value="30">Sun 7:15 AM · VSR 6:30 PM — ₹3,999 / ₹3,999</option></optgroup><optgroup label="Buses · arr Mon 28"><option value="1">Mon 5:55 AM · Rainbow 5:20 PM — ₹1,443 / ₹1,443</option><option value="0">Mon 6:30 AM · Mythri 5:30 PM — ₹1,659 / ₹1,659</option><option value="3">Mon 6:30 AM · LG 5:21 PM — ₹2,309 / ₹2,309</option><option value="5">Mon 6:30 AM · V Kaveri 4:02 PM — ₹2,724 / ₹2,724</option><option value="2">Mon 6:47 AM · Rainbow 6:47 PM — ₹1,837 / ₹1,837</option><option value="10">Mon 7:15 AM · VSR 6:30 PM — ₹3,999 / ₹3,999</option><option value="8">Mon 7:30 AM · V Kaveri 7:10 PM — ₹3,381 / ₹3,381</option><option value="4">Mon 7:45 AM · Jagan 5:55 PM — ₹2,366 / ₹2,366</option><option value="9">Mon 7:50 AM · FlixBus 6:15 PM — ₹1,637 / ₹1,637</option><option value="7">Mon 8:00 AM · Pramukh 7:05 PM — ₹2,869 / ₹2,869</option><option value="6">Mon 8:10 AM · BSR 7 PM — ₹2,380 / ₹2,380</option></optgroup></select><small class="hint">Times shown are Hyderabad arrival</small></div>
+    </div>
+    <button id="shareBtn" type="button">Copy link to this plan</button>
+    <div class="tagrow" id="planTags"><span class="tag">Fri 25 → Mon 28</span><span class="tag">2D/2N at temple</span><span class="tag">Leave Fri</span></div>
+    <div class="cols">
+      <div class="leg2"><h4 class="train" id="outH">Going · Fri 25 Dec — 12789 KCG–Kota SF (Tue/Fri)</h4><div id="outLegs"><div class="step"><span class="tm">6:05 AM</span><span class="pl"><b>Kacheguda</b><small>depart Fri · sleeper / 3A</small></span></div><div class="step"><span class="tm">7:10 PM</span><span class="pl"><b>Katpadi Jn</b><small>arrive Fri · 13h 5m</small></span></div><div class="step"><span class="tm">~9:30 PM</span><span class="pl"><b>Tiruvannamalai</b><small>arrive Fri · bus 91 km · ~2h · ₹160</small></span></div></div></div>
+      <div class="leg2"><h4 class="bus" id="retH">Back · Sun 27 Dec — 12798 Venkatadri (daily)</h4><div id="retLegs"><div class="step"><span class="tm">~1:30 PM</span><span class="pl"><b>Tiruvannamalai</b><small>depart Sun · bus ~200 km · ~5h</small></span></div><div class="step"><span class="tm">6:45 PM</span><span class="pl"><b>Tirupati</b><small>depart Sun · daily · sleeper / 3A</small></span></div><div class="step"><span class="tm">6:20 AM</span><span class="pl"><b>Kacheguda</b><small>arrive Mon · 11h 35m</small></span></div></div></div>
+    </div>
+    <div class="stay" id="stayBox"><div><small>At temple from</small><b>Fri 25 · 9:30 PM</b></div><div class="stayfree"><b>40 h free</b><small>2D/2N</small></div><div style="text-align:right"><small>Leave by</small><b>Sun 27 · 1:30 PM</b></div></div>
+    <div class="cost" id="costBox"><div class="crow head"><span>Leg</span><span>Lean</span><span>Comf.</span></div><div class="crow"><span>Train KCG → Katpadi</span><span>₹380</span><span>₹1,030</span></div><div class="crow"><span>Bus Katpadi → temple</span><span>₹160</span><span>₹250</span></div><div class="crow"><span>Bus temple → Tirupati</span><span>₹250</span><span>₹400</span></div><div class="crow"><span>Train Tirupati → SC</span><span>₹340</span><span>₹930</span></div><div class="crow total"><span>Travel total</span><span>₹1,130</span><span>₹2,610</span></div></div>
+    <p class="note" id="planNote"><b>12789 Katpadi Fri out, 12798 Tirupati back.</b> Friday-only daytime run to Katpadi; temple by night. Daily; early Kacheguda arrival.</p>
+  </div>
+
+  <p class="note" style="font-size:11.5px;color:var(--muted);margin-top:10px">Long-bus fares are November Thursday/Sunday pattern fares (Dec inventory still loading — expect different numbers). Train + short-bus fares ~estimated; confirm everything before paying.</p>
+
+  <h2>Temple · Dec 25–27 <span>timings + expected rush</span></h2>
+  <div class="fest"><b>Wed 23 · Pournami Girivalam</b> + <b>Thu 24 · Arudra Darshanam</b> — peak rush days. Crowds ease from the 25th; expect below-typical-weekend rush on 25–27.</div>
+  <div class="days" style="margin-top:12px">
+    <div class="day">
+      <div class="n">Fri 25</div>
+      <div class="d">Darshan 5:30 AM – 8 PM</div>
+      <p>Girivalam: start ~5 AM or after 7 PM · 14 km, 3.5–4.5 h.</p>
+      <div class="rush"><i style="width:45%"></i></div>
+      <p class="rl">Easing from festival</p>
+    </div>
+    <div class="day">
+      <div class="n">Sat 26</div>
+      <div class="d">Darshan 5:30 AM – 8 PM</div>
+      <p>Girivalam: start ~5 AM or after 7 PM · 14 km, 3.5–4.5 h.</p>
+      <div class="rush"><i style="width:25%"></i></div>
+      <p class="rl">Quiet</p>
+    </div>
+    <div class="day">
+      <div class="n">Sun 27</div>
+      <div class="d">Darshan 5:30 AM – 8 PM</div>
+      <p>Girivalam: early morning walk before the bus out.</p>
+      <div class="rush"><i style="width:30%"></i></div>
+      <p class="rl">Quiet Sunday</p>
+    </div>
+  </div>
+
+  <h2>Links <span>book and verify</span></h2>
+  <div class="links">
+    <div class="lgroup">
+      <h4>From Hyderabad · going</h4>
+      <a href="https://www.irctc.co.in/">IRCTC — reservations</a>
+      <a href="https://erail.in/train-enquiry/20629">20629 Sabari</a>
+      <a href="https://erail.in/train-enquiry/12760">12760 Charminar</a>
+      <a href="https://erail.in/train-enquiry/12604">12604 Chennai SF</a>
+      <a href="https://erail.in/train-enquiry/07001">07001 Thu direct spl</a>
+      <a href="https://erail.in/train-enquiry/12789">12789 KCG–Kota</a>
+      <a href="https://erail.in/train-enquiry/17653">17653 KCG–PDY</a>
+      <a href="https://erail.in/train-enquiry/17444">17444 CHZ–TPTY</a>
+      <a href="https://erail.in/train-enquiry/17406">17406 Krishna</a>
+      <a href="https://erail.in/train-enquiry/12708">12708 NZM–TPTY</a>
+      <a href="https://erail.in/train-enquiry/17418">17418 SNSI–TPTY</a>
+      <a href="https://erail.in/train-enquiry/12794">12794 Rayalaseema</a>
+      <a href="https://erail.in/train-enquiry/12734">12734 Narayanadri</a>
+      <a href="https://erail.in/train-enquiry/12766">12766 AMI–TPTY</a>
+      <a href="https://erail.in/train-enquiry/12764">12764 Padmavati</a>
+      <a href="https://erail.in/train-enquiry/12797">12797 Venkatadri</a>
+      <a href="https://erail.in/train-enquiry/12770">12770 Seven Hills</a>
+      <a href="https://erail.in/train-enquiry/17434">17434 RXL–TPTY</a>
+      <a href="https://www.redbus.in/bus-tickets/hyderabad-to-tiruvannamalai">Bus: Hyderabad → Tiruvannamalai</a>
+    </div>
+    <div class="lgroup">
+      <h4>To Hyderabad · return</h4>
+      <a href="https://erail.in/train-enquiry/20630">20630 Sabari</a>
+      <a href="https://erail.in/train-enquiry/12603">12603 Chennai SF</a>
+      <a href="https://erail.in/train-enquiry/12759">12759 Charminar</a>
+      <a href="https://erail.in/train-enquiry/17654">17654 PDY–KCG</a>
+      <a href="https://erail.in/train-enquiry/16003">16003 MAS–NSL</a>
+      <a href="https://erail.in/train-enquiry/12790">12790 Kumta–KCG</a>
+      <a href="https://erail.in/train-enquiry/07192">07192 SCT–CHZ Spl</a>
+      <a href="https://erail.in/train-enquiry/07536">07536 NCJ–CHZ Spl</a>
+      <a href="https://erail.in/train-enquiry/17405">17405 Krishna</a>
+      <a href="https://erail.in/train-enquiry/12793">12793 Rayalaseema</a>
+      <a href="https://erail.in/train-enquiry/12733">12733 Narayanadri</a>
+      <a href="https://erail.in/train-enquiry/12798">12798 Venkatadri</a>
+      <a href="https://erail.in/train-enquiry/12731">12731 TPTY–SC</a>
+      <a href="https://erail.in/train-enquiry/16354">16354 NCJ–KCG</a>
+      <a href="https://erail.in/train-enquiry/22716">22716 MDU–KCG</a>
+      <a href="https://erail.in/train-enquiry/17425">17425 TPTY–SNSI</a>
+      <a href="https://erail.in/train-enquiry/12769">12769 Seven Hills</a>
+      <a href="https://erail.in/train-enquiry/17433">17433 TPTY–RXL</a>
+      <a href="https://erail.in/train-enquiry/07194">07194 QLN–HYB Spl</a>
+      <a href="https://erail.in/train-enquiry/12763">12763 Padmavati</a>
+      <a href="https://erail.in/train-enquiry/17060">17060 TCNR–CHZ</a>
+      <a href="https://www.redbus.in/bus-tickets/tiruvannamalai-to-hyderabad">Bus: Tiruvannamalai → Hyderabad</a>
+      <a href="https://www.redbus.in/bus-tickets/katpadi-to-hyderabad">Bus: Katpadi → Hyderabad</a>
+      <a href="https://www.redbus.in/bus-tickets/chennai-to-hyderabad">Bus: Chennai → Hyderabad</a>
+      <a href="https://www.redbus.in/bus-tickets/chennai-to-tiruvannamalai">Bus: Chennai → Tiruvannamalai</a>
+      <a href="https://www.redbus.in/bus-tickets/katpadi-to-tiruvannamalai">Bus: Katpadi → Tiruvannamalai</a>
+      <a href="https://www.tnstc.in/">TNSTC — govt buses</a>
+    </div>
+
+    <div class="lgroup">
+      <h4>Temple</h4>
+      <a href="https://www.arunachalamtemple.org/how-to-reach/">How to reach Tiruvannamalai</a>
+      <a href="https://tiruvannamalaidevasthanam.org.in/darshan-timings/">Darshan timings guide</a>
+    </div>
+  </div>
+
+  <footer>
+    Timetables read from erail.in on 1 Nov 2026 (20629, 07001, 12760, 12789, 17654, 12603, 20630); bus distances, frequencies and fares from redBus route pages; darshan hours from the Tiruvannamalai Devasthanam guide. Running days and specials change — confirm on IRCTC a week before travel.
+  </footer>
+</div>
+
+<script>
+var OUTS = [
+  {id:"sabari24", name:"Sabari", via:"Katpadi", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 Sabari SF 20629 (daily)",
+   out:[
+     ["2:25 PM", "Secunderabad Jn", "depart Thu \u00b7 sleeper / 3A"],
+     ["3:35 AM", "Katpadi Jn", "arrive Fri \u00b7 13h 10m"],
+     ["~6:15 AM", "Tiruvannamalai", "arrive Fri \u00b7 bus 91 km \u00b7 ~2h \u00b7 \u20b9160"]
+   ],
+   from:"Fri 25 \u00b7 6:15 AM", t0:Date.UTC(2026,11,25,6,15),
+   cost:[["Train SC \u2192 Katpadi",380,1030],["Bus Katpadi \u2192 temple",160,250]],
+   note:"Daily train to the nearest railhead; only wrinkle is the 3:35 AM Katpadi arrival."},
+  {id:"chennai24", name:"Chennai", via:"Chennai", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 Charminar Exp 12760 (daily)",
+   out:[
+     ["6:00 PM", "Hyderabad Deccan", "depart Thu \u00b7 sleeper / 3A"],
+     ["6:40 AM", "Chennai Egmore", "arrive Fri \u00b7 12h 40m"],
+     ["~11:30 AM", "Tiruvannamalai", "arrive Fri \u00b7 bus 207 km \u00b7 ~4h \u00b7 \u20b9279+"]
+   ],
+   from:"Fri 25 \u00b7 11:30 AM", t0:Date.UTC(2026,11,25,11,30),
+   cost:[["Train HYD \u2192 Chennai",365,1000],["Bus Chennai \u2192 temple",279,450]],
+   note:"Civilised hours throughout, but a 4-hour bus at each end of the rail journey."},
+  {id:"sabari25", name:"Sabari", via:"Katpadi", range:"Fri 25 \u2192 Mon 28", leaveFri:true,
+   outH:"Going \u00b7 Fri 25 Dec \u2014 Sabari SF 20629 (daily)",
+   out:[
+     ["2:25 PM", "Secunderabad Jn", "depart Fri \u00b7 sleeper / 3A"],
+     ["3:35 AM", "Katpadi Jn", "arrive Sat \u00b7 13h 10m"],
+     ["~6:15 AM", "Tiruvannamalai", "arrive Sat \u00b7 bus 91 km \u00b7 ~2h \u00b7 \u20b9160"]
+   ],
+   from:"Sat 26 \u00b7 6:15 AM", t0:Date.UTC(2026,11,26,6,15),
+   cost:[["Train SC \u2192 Katpadi",380,1030],["Bus Katpadi \u2192 temple",160,250]],
+   note:"Same Sabari run a day later \u2014 for when you cannot leave on Thursday."},
+  {id:"spl07001", name:"Spl direct", via:"Direct", range:"Thu 24 \u2192 Mon 28", direct:true,
+   outH:"Going \u00b7 Thu 24 Dec \u2014 07001 CHZ\u2013TNM Spl (Thu)",
+   out:[
+     ["5:50 PM", "Charlapalli (CHZ)", "depart Thu \u00b7 SL / 3A"],
+     ["1:30 PM", "Tiruvannamalai", "arrive Fri \u00b7 19h 40m \u00b7 direct"]
+   ],
+   from:"Fri 25 \u00b7 1:30 PM", t0:Date.UTC(2026,11,25,13,30),
+   cost:[["Train CHZ \u2192 Tiruvannamalai",405,1110]],
+   note:"Thursday special direct to the temple \u2014 confirm December running on IRCTC first."},
+  {id:"out_mythri1745", name:"Mythri 5:45 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 Mythri Tours A/C Sleeper",
+   out:[
+     ["5:45 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 Mythri Tours A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["5:50 AM", "Tiruvannamalai", "arrive Fri \u00b7 12h 5m \u00b7 694 km \u00b7 \u20b92,059"]
+   ],
+   from:"Fri 25 \u00b7 5:50 AM", t0:Date.UTC(2026,11,25,5,50),
+   cost:[["Bus HYD \u2192 temple \u00b7 Mythri Tours A/C Sleeper",2059,2059]],
+   note:"A/C Sleeper \u00b7 Nov Thu fare \u20b92,059."},
+  {id:"out_mythri1845", name:"Mythri 6:45 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 Mythri Tours A/C Sleeper",
+   out:[
+     ["6:45 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 Mythri Tours A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["7:52 AM", "Tiruvannamalai", "arrive Fri \u00b7 13h 7m \u00b7 694 km \u00b7 \u20b92,099"]
+   ],
+   from:"Fri 25 \u00b7 7:52 AM", t0:Date.UTC(2026,11,25,7,52),
+   cost:[["Bus HYD \u2192 temple \u00b7 Mythri Tours A/C Sleeper",2099,2099]],
+   note:"A/C Sleeper \u00b7 Nov Thu fare \u20b92,099."},
+  {id:"out_rainbow1635", name:"Rainbow 4:35 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 Rainbow Ryders A/C Sleeper",
+   out:[
+     ["4:35 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 Rainbow Ryders A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["5:10 AM", "Tiruvannamalai", "arrive Fri \u00b7 12h 35m \u00b7 694 km \u00b7 \u20b92,283"]
+   ],
+   from:"Fri 25 \u00b7 5:10 AM", t0:Date.UTC(2026,11,25,5,10),
+   cost:[["Bus HYD \u2192 temple \u00b7 Rainbow Ryders A/C Sleeper",2283,2283]],
+   note:"A/C Sleeper \u00b7 Nov Thu fare \u20b92,283."},
+  {id:"out_rainbow1815", name:"Rainbow 6:15 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 Rainbow Ryders A/C Sleeper",
+   out:[
+     ["6:15 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 Rainbow Ryders A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["6:20 AM", "Tiruvannamalai", "arrive Fri \u00b7 12h 5m \u00b7 694 km \u00b7 \u20b91,933"]
+   ],
+   from:"Fri 25 \u00b7 6:20 AM", t0:Date.UTC(2026,11,25,6,20),
+   cost:[["Bus HYD \u2192 temple \u00b7 Rainbow Ryders A/C Sleeper",1933,1933]],
+   note:"A/C Seater/Sleeper \u00b7 Nov Thu fare \u20b91,933."},
+  {id:"out_jagan1830", name:"Jagan 6:30 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 Jagan Travels A/C Sleeper",
+   out:[
+     ["6:30 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 Jagan Travels A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["7:25 AM", "Tiruvannamalai", "arrive Fri \u00b7 12h 55m \u00b7 694 km \u00b7 \u20b92,033"]
+   ],
+   from:"Fri 25 \u00b7 7:25 AM", t0:Date.UTC(2026,11,25,7,25),
+   cost:[["Bus HYD \u2192 temple \u00b7 Jagan Travels A/C Sleeper",2033,2033]],
+   note:"Volvo A/C Sleeper \u00b7 Nov Thu fare \u20b92,033."},
+  {id:"out_vkaveri1745", name:"V Kaveri 5:45 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 V Kaveri Travels A/C Sleeper",
+   out:[
+     ["5:45 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 V Kaveri Travels A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["6:30 AM", "Tiruvannamalai", "arrive Fri \u00b7 12h 45m \u00b7 694 km \u00b7 \u20b93,200"]
+   ],
+   from:"Fri 25 \u00b7 6:30 AM", t0:Date.UTC(2026,11,25,6,30),
+   cost:[["Bus HYD \u2192 temple \u00b7 V Kaveri Travels A/C Sleeper",3200,3200]],
+   note:"Volvo A/C Sleeper \u00b7 Nov Thu fare \u20b93,200."},
+  {id:"out_lg2020", name:"LG 8:20 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 LG BUS A/C Sleeper",
+   out:[
+     ["8:20 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 LG BUS A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["8:28 AM", "Tiruvannamalai", "arrive Fri \u00b7 12h 8m \u00b7 694 km \u00b7 \u20b91,839"]
+   ],
+   from:"Fri 25 \u00b7 8:28 AM", t0:Date.UTC(2026,11,25,8,28),
+   cost:[["Bus HYD \u2192 temple \u00b7 LG BUS A/C Sleeper",1839,1839]],
+   note:"A/C Sleeper \u00b7 Nov Thu fare \u20b91,839."},
+  {id:"out_flixbus1940", name:"FlixBus 7:40 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 FlixBus A/C Sleeper",
+   out:[
+     ["7:40 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 FlixBus A/C Sleeper"],
+     ["9:05 AM", "Tiruvannamalai", "arrive Fri \u00b7 13h 25m \u00b7 694 km \u00b7 \u20b91,637"]
+   ],
+   from:"Fri 25 \u00b7 9:05 AM", t0:Date.UTC(2026,11,25,9,5),
+   cost:[["Bus HYD \u2192 temple \u00b7 FlixBus A/C Sleeper",1637,1637]],
+   note:"A/C Sleeper \u00b7 bookable Dec 24 at \u20b91,637."},
+  {id:"out_pramukh1945", name:"Pramukh 7:45 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 Pramukh Travels A/C Sleeper",
+   out:[
+     ["7:45 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 Pramukh Travels A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["7:45 AM", "Tiruvannamalai", "arrive Fri \u00b7 12h \u00b7 694 km \u00b7 \u20b92,419"]
+   ],
+   from:"Fri 25 \u00b7 7:45 AM", t0:Date.UTC(2026,11,25,7,45),
+   cost:[["Bus HYD \u2192 temple \u00b7 Pramukh Travels A/C Sleeper",2419,2419]],
+   note:"Volvo A/C Sleeper \u00b7 Nov Thu fare \u20b92,419."},
+  {id:"out_bsr1830", name:"BSR 6:30 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 BSR Tours A/C Sleeper",
+   out:[
+     ["6:30 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 BSR Tours A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["6:50 AM", "Tiruvannamalai", "arrive Fri \u00b7 12h 20m \u00b7 694 km \u00b7 \u20b93,480"]
+   ],
+   from:"Fri 25 \u00b7 6:50 AM", t0:Date.UTC(2026,11,25,6,50),
+   cost:[["Bus HYD \u2192 temple \u00b7 BSR Tours A/C Sleeper",3480,3480]],
+   note:"Volvo A/C Sleeper \u00b7 Nov Thu fare \u20b93,480."},
+  {id:"out_vsr1820", name:"VSR 6:20 PM", via:"Bus", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 VSR Tours A/C Sleeper",
+   out:[
+     ["6:20 PM", "Hyderabad (MGBS)", "depart Thu \u00b7 VSR Tours A/C Sleeper"],
+     ["7:01 AM", "Tiruvannamalai", "arrive Fri \u00b7 12h 41m \u00b7 694 km \u00b7 \u20b93,999"]
+   ],
+   from:"Fri 25 \u00b7 7:01 AM", t0:Date.UTC(2026,11,25,7,1),
+   cost:[["Bus HYD \u2192 temple \u00b7 VSR Tours A/C Sleeper",3999,3999]],
+   note:"A/C Sleeper \u00b7 bookable Dec 24 at \u20b93,999."},
+  {id:"out_12604", name:"12604 Chennai", via:"Chennai", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 12604 Chennai SF (daily)",
+   out:[
+     ["5:25 PM", "Charlapalli (CHZ)", "depart Thu \u00b7 sleeper / 3A"],
+     ["5:40 AM", "Chennai Central", "arrive Fri \u00b7 12h 15m"],
+     ["~10:00 AM", "Tiruvannamalai", "arrive Fri \u00b7 bus 207 km \u00b7 ~4h \u00b7 \u20b9279+"]
+   ],
+   from:"Fri 25 \u00b7 10:00 AM", t0:Date.UTC(2026,11,25,10,0),
+   cost:[["Train CHZ \u2192 Chennai",365,1000],["Bus Chennai \u2192 temple",279,700]],
+   note:"Second daily Chennai train; morning arrival gives a full Friday."},
+  {id:"out_12789", name:"12789 Katpadi Fri", via:"Katpadi", range:"Fri 25 \u2192 Mon 28", leaveFri:true,
+   outH:"Going \u00b7 Fri 25 Dec \u2014 12789 KCG\u2013Kota SF (Tue/Fri)",
+   out:[
+     ["6:05 AM", "Kacheguda", "depart Fri \u00b7 sleeper / 3A"],
+     ["7:10 PM", "Katpadi Jn", "arrive Fri \u00b7 13h 5m"],
+     ["~9:30 PM", "Tiruvannamalai", "arrive Fri \u00b7 bus 91 km \u00b7 ~2h \u00b7 \u20b9160"]
+   ],
+   from:"Fri 25 \u00b7 9:30 PM", t0:Date.UTC(2026,11,25,21,30),
+   cost:[["Train KCG \u2192 Katpadi",380,1030],["Bus Katpadi \u2192 temple",160,250]],
+   note:"Friday-only daytime run to Katpadi; temple by night."},
+  {id:"out_17653", name:"17653 Villupuram Fri", via:"Villupuram", range:"Fri 25 \u2192 Mon 28", leaveFri:true,
+   outH:"Going \u00b7 Fri 25 Dec \u2014 17653 KCG\u2013PDY (Wed/Fri/Sun)",
+   out:[
+     ["5:00 PM", "Kacheguda", "depart Fri \u00b7 sleeper / 3A"],
+     ["10:10 AM", "Villupuram Jn", "arrive Sat \u00b7 17h 10m"],
+     ["~12:00 PM", "Tiruvannamalai", "arrive Sat \u00b7 bus 65 km \u00b7 ~1.5h \u00b7 ~\u20b9120"]
+   ],
+   from:"Sat 26 \u00b7 12:00 PM", t0:Date.UTC(2026,11,26,12,0),
+   cost:[["Train KCG \u2192 Villupuram",420,1140],["Bus Villupuram \u2192 temple",120,200]],
+   note:"Closest railhead (65 km) but a slow 17-hour ride; midday Saturday arrival."},
+  {id:"out_17444", name:"17444 Tirupati Fri", via:"Tirupati", range:"Fri 25 \u2192 Mon 28", leaveFri:true,
+   outH:"Going \u00b7 Fri 25 Dec \u2014 17444 CHZ\u2013TPTY (Fri)",
+   out:[
+     ["4:20 PM", "Charlapalli (CHZ)", "depart Fri \u00b7 sleeper / 3A"],
+     ["7:30 AM", "Tirupati", "arrive Sat \u00b7 15h 10m"],
+     ["~1:00 PM", "Tiruvannamalai", "arrive Sat \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"]
+   ],
+   from:"Sat 26 \u00b7 1:00 PM", t0:Date.UTC(2026,11,26,13,0),
+   cost:[["Train CHZ \u2192 Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Friday Tirupati train; onward TNSTC/APSRTC buses via Chittoor\u2013Vellore, not on redBus."},
+  {id:"out_17406", name:"17406 Tirupati", via:"Tirupati", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 17406 Krishna (daily)",
+   out:[
+     ["5:55 AM", "Charlapalli (CHZ)", "depart Thu \u00b7 sleeper / 3A"],
+     ["9:40 PM", "Tirupati", "arrive Thu \u00b7 15h 45m"],
+     ["~2:30 AM", "Tiruvannamalai", "arrive Fri \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Fri 25 \u00b7 2:30 AM", t0:Date.UTC(2026,11,25,2,30),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Daily dawn train; night bus to the temple."},
+  {id:"out_12708", name:"12708 Tirupati", via:"Tirupati", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 12708 NZM\u2013TPTY (Thu)",
+   out:[
+     ["8:55 AM", "Kacheguda", "depart Thu \u00b7 sleeper / 3A"],
+     ["9:00 PM", "Tirupati", "arrive Thu \u00b7 12h 05m"],
+     ["~2:00 AM", "Tiruvannamalai", "arrive Fri \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Fri 25 \u00b7 2:00 AM", t0:Date.UTC(2026,11,25,2,0),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Morning train, night bus; verify Thursday running."},
+  {id:"out_17418", name:"17418 Tirupati", via:"Tirupati", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 17418 SNSI\u2013TPTY (Thu)",
+   out:[
+     ["9:05 AM", "Secunderabad Jn", "depart Thu \u00b7 sleeper / 3A"],
+     ["10:50 PM", "Tirupati", "arrive Thu \u00b7 13h 45m"],
+     ["~4:00 AM", "Tiruvannamalai", "arrive Fri \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Fri 25 \u00b7 4:00 AM", t0:Date.UTC(2026,11,25,4,0),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Morning train, night bus; verify Thursday running."},
+  {id:"out_12794", name:"12794 Tirupati", via:"Tirupati", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 12794 Rayalaseema (daily)",
+   out:[
+     ["5:15 PM", "Secunderabad Jn", "depart Thu \u00b7 sleeper / 3A"],
+     ["6:15 AM", "Tirupati", "arrive Fri \u00b7 13h"],
+     ["~11:30 AM", "Tiruvannamalai", "arrive Fri \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Fri 25 \u00b7 11:30 AM", t0:Date.UTC(2026,11,25,11,30),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Daily evening train to Tirupati."},
+  {id:"out_12734", name:"12734 Tirupati", via:"Tirupati", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 12734 Narayanadri (daily)",
+   out:[
+     ["5:30 PM", "Lingampalli", "depart Thu \u00b7 sleeper / 3A"],
+     ["5:55 AM", "Tirupati", "arrive Fri \u00b7 12h 25m"],
+     ["~11:00 AM", "Tiruvannamalai", "arrive Fri \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Fri 25 \u00b7 11:00 AM", t0:Date.UTC(2026,11,25,11,0),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Daily; boards at Lingampalli."},
+  {id:"out_12766", name:"12766 Tirupati", via:"Tirupati", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 12766 AMI\u2013TPTY (Thu)",
+   out:[
+     ["5:30 PM", "Kacheguda", "depart Thu \u00b7 sleeper / 3A"],
+     ["6:25 AM", "Tirupati", "arrive Fri \u00b7 12h 55m"],
+     ["~11:30 AM", "Tiruvannamalai", "arrive Fri \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Fri 25 \u00b7 11:30 AM", t0:Date.UTC(2026,11,25,11,30),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Verify Thursday running."},
+  {id:"out_12764", name:"12764 Tirupati", via:"Tirupati", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 12764 Padmavati (Thu)",
+   out:[
+     ["6:40 PM", "Secunderabad Jn", "depart Thu \u00b7 sleeper / 3A"],
+     ["6:55 AM", "Tirupati", "arrive Fri \u00b7 12h 15m"],
+     ["~12:00 PM", "Tiruvannamalai", "arrive Fri \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Fri 25 \u00b7 12:00 PM", t0:Date.UTC(2026,11,25,12,0),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Verify Thursday running."},
+  {id:"out_12797", name:"12797 Tirupati", via:"Tirupati", range:"Thu 24 \u2192 Mon 28",
+   outH:"Going \u00b7 Thu 24 Dec \u2014 12797 Venkatadri (daily)",
+   out:[
+     ["8:05 PM", "Kacheguda", "depart Thu \u00b7 sleeper / 3A"],
+     ["6:55 AM", "Tirupati", "arrive Fri \u00b7 10h 50m"],
+     ["~12:00 PM", "Tiruvannamalai", "arrive Fri \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Fri 25 \u00b7 12:00 PM", t0:Date.UTC(2026,11,25,12,0),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Daily late train; fastest Tirupati run."},
+  {id:"out_12770", name:"12770 Tirupati Fri", via:"Tirupati", range:"Fri 25 \u2192 Mon 28", leaveFri:true,
+   outH:"Going \u00b7 Fri 25 Dec \u2014 12770 Seven Hills (Fri)",
+   out:[
+     ["5:40 PM", "Secunderabad Jn", "depart Fri \u00b7 sleeper / 3A"],
+     ["6:25 AM", "Tirupati", "arrive Sat \u00b7 12h 45m"],
+     ["~11:30 AM", "Tiruvannamalai", "arrive Sat \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Sat 26 \u00b7 11:30 AM", t0:Date.UTC(2026,11,26,11,30),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Friday Seven Hills to Tirupati."},
+  {id:"out_17434", name:"17434 Tirupati Fri", via:"Tirupati", range:"Fri 25 \u2192 Mon 28", leaveFri:true,
+   outH:"Going \u00b7 Fri 25 Dec \u2014 17434 RXL\u2013TPTY (Fri)",
+   out:[
+     ["7:05 PM", "Secunderabad Jn", "depart Fri \u00b7 sleeper / 3A"],
+     ["9:30 AM", "Tirupati", "arrive Sat \u00b7 14h 25m"],
+     ["~2:30 PM", "Tiruvannamalai", "arrive Sat \u00b7 TNSTC/APSRTC bus ~200 km \u00b7 ~5h"],
+   ],
+   from:"Sat 26 \u00b7 2:30 PM", t0:Date.UTC(2026,11,26,14,30),
+   cost:[["Train to Tirupati",340,930],["Bus Tirupati \u2192 temple",250,400]],
+   note:"Friday evening train; Saturday afternoon arrival."},
+{
+  id: "out_flix25fri",
+  name: "FlixBus 7:40 PM",
+  via: "Bus",
+  range: "Fri 25 \u2192 Mon 28",
+  outH: "Going \u00b7 Fri 25 Dec \u2014 FlixBus A/C Sleeper",
+  out: [
+   [
+    "7:40 PM",
+    "Hyderabad (MGBS)",
+    "depart Fri \u00b7 FlixBus A/C Sleeper"
+   ],
+   [
+    "9:05 AM",
+    "Tiruvannamalai",
+    "arrive Sat \u00b7 13h 25m \u00b7 694 km \u00b7 \u20b93,332"
+   ]
+  ],
+  from: "Sat 26 \u00b7 9:05 AM",
+  t0: Date.UTC(2026,11,26,9,5),
+  cost: [
+   [
+    "Bus HYD \u2192 temple \u00b7 FlixBus A/C Sleeper",
+    3332,
+    3332
+   ]
+  ],
+  note: "A/C Sleeper \u00b7 bookable Dec 25 at \u20b93,332.",
+  leaveFri: true
+},
+{
+  id: "out_vsr25fri",
+  name: "VSR 6:20 PM",
+  via: "Bus",
+  range: "Fri 25 \u2192 Mon 28",
+  outH: "Going \u00b7 Fri 25 Dec \u2014 VSR A/C Sleeper",
+  out: [
+   [
+    "6:20 PM",
+    "Hyderabad (MGBS)",
+    "depart Fri \u00b7 VSR Tours A/C Sleeper"
+   ],
+   [
+    "7:01 AM",
+    "Tiruvannamalai",
+    "arrive Sat \u00b7 12h 41m \u00b7 694 km \u00b7 \u20b93,999"
+   ]
+  ],
+  from: "Sat 26 \u00b7 7:01 AM",
+  t0: Date.UTC(2026,11,26,7,1),
+  cost: [
+   [
+    "Bus HYD \u2192 temple \u00b7 VSR A/C Sleeper",
+    3999,
+    3999
+   ]
+  ],
+  note: "A/C Sleeper \u00b7 bookable Dec 25 at \u20b93,999.",
+  leaveFri: true
+},
+{
+   id: "out_fmyth1745",
+   name: "Mythri 5:45 PM",
+   via: "Bus",
+   range: "Fri 25 \u2192 Mon 28",
+   outH: "Going \u00b7 Fri 25 Dec \u2014 Mythri Tours A/C Sleeper",
+   out: [
+    [
+     "5:45 PM",
+     "Hyderabad (MGBS)",
+     "depart Fri \u00b7 Mythri Tours A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"
+    ],
+    [
+     "5:50 AM",
+     "Tiruvannamalai",
+     "arrive Sat \u00b7 12h 5m \u00b7 694 km \u00b7 \u20b92,509"
+    ]
+   ],
+   from: "Sat 26 \u00b7 5:50 AM",
+   t0:Date.UTC(2026,11,26,5,50),
+   cost: [
+    [
+     "Bus HYD \u2192 temple \u00b7 Mythri Tours A/C Sleeper",
+     2509,
+     2509
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 Nov Fri fare \u20b92,509.",
+   leaveFri: true
+  },
+  {
+   id: "out_fmyth1845",
+   name: "Mythri 6:45 PM",
+   via: "Bus",
+   range: "Fri 25 \u2192 Mon 28",
+   outH: "Going \u00b7 Fri 25 Dec \u2014 Mythri Tours A/C Sleeper",
+   out: [
+    [
+     "6:45 PM",
+     "Hyderabad (MGBS)",
+     "depart Fri \u00b7 Mythri Tours A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"
+    ],
+    [
+     "7:52 AM",
+     "Tiruvannamalai",
+     "arrive Sat \u00b7 13h 7m \u00b7 694 km \u00b7 \u20b92,879"
+    ]
+   ],
+   from: "Sat 26 \u00b7 7:52 AM",
+   t0:Date.UTC(2026,11,26,7,52),
+   cost: [
+    [
+     "Bus HYD \u2192 temple \u00b7 Mythri Tours A/C Sleeper",
+     2879,
+     2879
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 Nov Fri fare \u20b92,879.",
+   leaveFri: true
+  },
+  {
+   id: "out_frain1635",
+   name: "Rainbow 4:35 PM",
+   via: "Bus",
+   range: "Fri 25 \u2192 Mon 28",
+   outH: "Going \u00b7 Fri 25 Dec \u2014 Rainbow Ryders A/C Sleeper",
+   out: [
+    [
+     "4:35 PM",
+     "Hyderabad (MGBS)",
+     "depart Fri \u00b7 Rainbow Ryders A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"
+    ],
+    [
+     "5:10 AM",
+     "Tiruvannamalai",
+     "arrive Sat \u00b7 12h 35m \u00b7 694 km \u00b7 \u20b93,027"
+    ]
+   ],
+   from: "Sat 26 \u00b7 5:10 AM",
+   t0:Date.UTC(2026,11,26,5,10),
+   cost: [
+    [
+     "Bus HYD \u2192 temple \u00b7 Rainbow Ryders A/C Sleeper",
+     3027,
+     3027
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 Nov Fri fare \u20b93,027.",
+   leaveFri: true
+  },
+  {
+   id: "out_frain1815",
+   name: "Rainbow 6:15 PM",
+   via: "Bus",
+   range: "Fri 25 \u2192 Mon 28",
+   outH: "Going \u00b7 Fri 25 Dec \u2014 Rainbow Ryders A/C Sleeper",
+   out: [
+    [
+     "6:15 PM",
+     "Hyderabad (MGBS)",
+     "depart Fri \u00b7 Rainbow Ryders A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"
+    ],
+    [
+     "6:20 AM",
+     "Tiruvannamalai",
+     "arrive Sat \u00b7 12h 5m \u00b7 694 km \u00b7 \u20b92,362"
+    ]
+   ],
+   from: "Sat 26 \u00b7 6:20 AM",
+   t0:Date.UTC(2026,11,26,6,20),
+   cost: [
+    [
+     "Bus HYD \u2192 temple \u00b7 Rainbow Ryders A/C Sleeper",
+     2362,
+     2362
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 Nov Fri fare \u20b92,362.",
+   leaveFri: true
+  },
+  {
+   id: "out_fjagan1830",
+   name: "Jagan 6:30 PM",
+   via: "Bus",
+   range: "Fri 25 \u2192 Mon 28",
+   outH: "Going \u00b7 Fri 25 Dec \u2014 Jagan Travels A/C Sleeper",
+   out: [
+    [
+     "6:30 PM",
+     "Hyderabad (MGBS)",
+     "depart Fri \u00b7 Jagan Travels A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"
+    ],
+    [
+     "7:25 AM",
+     "Tiruvannamalai",
+     "arrive Sat \u00b7 12h 55m \u00b7 694 km \u00b7 \u20b92,825"
+    ]
+   ],
+   from: "Sat 26 \u00b7 7:25 AM",
+   t0:Date.UTC(2026,11,26,7,25),
+   cost: [
+    [
+     "Bus HYD \u2192 temple \u00b7 Jagan Travels A/C Sleeper",
+     2825,
+     2825
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 Nov Fri fare \u20b92,825.",
+   leaveFri: true
+  },
+  {
+   id: "out_fvkav1745",
+   name: "V Kaveri 5:45 PM",
+   via: "Bus",
+   range: "Fri 25 \u2192 Mon 28",
+   outH: "Going \u00b7 Fri 25 Dec \u2014 V Kaveri Travels A/C Sleeper",
+   out: [
+    [
+     "5:45 PM",
+     "Hyderabad (MGBS)",
+     "depart Fri \u00b7 V Kaveri Travels A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"
+    ],
+    [
+     "6:30 AM",
+     "Tiruvannamalai",
+     "arrive Sat \u00b7 12h 45m \u00b7 694 km \u00b7 \u20b93,929"
+    ]
+   ],
+   from: "Sat 26 \u00b7 6:30 AM",
+   t0:Date.UTC(2026,11,26,6,30),
+   cost: [
+    [
+     "Bus HYD \u2192 temple \u00b7 V Kaveri Travels A/C Sleeper",
+     3929,
+     3929
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 Nov Fri fare \u20b93,929.",
+   leaveFri: true
+  },
+  {
+   id: "out_flg2020",
+   name: "LG 8:20 PM",
+   via: "Bus",
+   range: "Fri 25 \u2192 Mon 28",
+   outH: "Going \u00b7 Fri 25 Dec \u2014 LG BUS A/C Sleeper",
+   out: [
+    [
+     "8:20 PM",
+     "Hyderabad (MGBS)",
+     "depart Fri \u00b7 LG BUS A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"
+    ],
+    [
+     "8:28 AM",
+     "Tiruvannamalai",
+     "arrive Sat \u00b7 12h 8m \u00b7 694 km \u00b7 \u20b92,680"
+    ]
+   ],
+   from: "Sat 26 \u00b7 8:28 AM",
+   t0:Date.UTC(2026,11,26,8,28),
+   cost: [
+    [
+     "Bus HYD \u2192 temple \u00b7 LG BUS A/C Sleeper",
+     2680,
+     2680
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 Nov Fri fare \u20b92,680.",
+   leaveFri: true
+  },
+  {
+   id: "out_fpram1945",
+   name: "Pramukh 7:45 PM",
+   via: "Bus",
+   range: "Fri 25 \u2192 Mon 28",
+   outH: "Going \u00b7 Fri 25 Dec \u2014 Pramukh Travels A/C Sleeper",
+   out: [
+    [
+     "7:45 PM",
+     "Hyderabad (MGBS)",
+     "depart Fri \u00b7 Pramukh Travels A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"
+    ],
+    [
+     "7:45 AM",
+     "Tiruvannamalai",
+     "arrive Sat \u00b7 12h \u00b7 694 km \u00b7 \u20b93,169"
+    ]
+   ],
+   from: "Sat 26 \u00b7 7:45 AM",
+   t0:Date.UTC(2026,11,26,7,45),
+   cost: [
+    [
+     "Bus HYD \u2192 temple \u00b7 Pramukh Travels A/C Sleeper",
+     3169,
+     3169
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 Nov Fri fare \u20b93,169.",
+   leaveFri: true
+  },
+  {
+   id: "out_fbsr1830",
+   name: "BSR 6:30 PM",
+   via: "Bus",
+   range: "Fri 25 \u2192 Mon 28",
+   outH: "Going \u00b7 Fri 25 Dec \u2014 BSR Tours A/C Sleeper",
+   out: [
+    [
+     "6:30 PM",
+     "Hyderabad (MGBS)",
+     "depart Fri \u00b7 BSR Tours A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"
+    ],
+    [
+     "6:50 AM",
+     "Tiruvannamalai",
+     "arrive Sat \u00b7 12h 20m \u00b7 694 km \u00b7 \u20b94,080"
+    ]
+   ],
+   from: "Sat 26 \u00b7 6:50 AM",
+   t0:Date.UTC(2026,11,26,6,50),
+   cost: [
+    [
+     "Bus HYD \u2192 temple \u00b7 BSR Tours A/C Sleeper",
+     4080,
+     4080
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 Nov Fri fare \u20b94,080.",
+   leaveFri: true
+  }
+];
+var RETS = [
+  {id:"ret_mythri1730", name:"Mythri 5:30 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["5:30 PM", "Tiruvannamalai", "depart Sun \u00b7 Mythri A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["6:30 AM", "Hyderabad", "arrive Mon \u00b7 13h \u00b7 694 km \u00b7 \u20b91,659"]
+   ],
+   to:"Sun 27 \u00b7 5:30 PM", t1:Date.UTC(2026,11,27,17,30),
+   cost:[["Bus temple \u2192 HYD \u00b7 Mythri A/C Sleeper",1659,1659]],
+   note:"A/C Sleeper \u00b7 Nov Sun fare \u20b91,659."},
+  {id:"ret_rainbow1720", name:"Rainbow 5:20 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["5:20 PM", "Tiruvannamalai", "depart Sun \u00b7 Rainbow A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["5:55 AM", "Hyderabad", "arrive Mon \u00b7 12h 35m \u00b7 694 km \u00b7 \u20b91,443"]
+   ],
+   to:"Sun 27 \u00b7 5:20 PM", t1:Date.UTC(2026,11,27,17,20),
+   cost:[["Bus temple \u2192 HYD \u00b7 Rainbow A/C Sleeper",1443,1443]],
+   note:"A/C Seater/Sleeper \u00b7 Nov Sun fare \u20b91,443."},
+  {id:"ret_rainbow1847", name:"Rainbow 6:47 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["6:47 PM", "Tiruvannamalai", "depart Sun \u00b7 Rainbow A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["6:47 AM", "Hyderabad", "arrive Mon \u00b7 12h \u00b7 694 km \u00b7 \u20b91,837"]
+   ],
+   to:"Sun 27 \u00b7 6:47 PM", t1:Date.UTC(2026,11,27,18,47),
+   cost:[["Bus temple \u2192 HYD \u00b7 Rainbow A/C Sleeper",1837,1837]],
+   note:"A/C Sleeper \u00b7 Nov Sun fare \u20b91,837."},
+  {id:"ret_lg1721", name:"LG 5:21 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["5:21 PM", "Tiruvannamalai", "depart Sun \u00b7 LG A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["6:30 AM", "Hyderabad", "arrive Mon \u00b7 13h 9m \u00b7 694 km \u00b7 \u20b92,309"]
+   ],
+   to:"Sun 27 \u00b7 5:21 PM", t1:Date.UTC(2026,11,27,17,21),
+   cost:[["Bus temple \u2192 HYD \u00b7 LG A/C Sleeper",2309,2309]],
+   note:"A/C Sleeper \u00b7 Nov Sun fare \u20b92,309."},
+  {id:"ret_jagan1755", name:"Jagan 5:55 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["5:55 PM", "Tiruvannamalai", "depart Sun \u00b7 Jagan A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["7:45 AM", "Hyderabad", "arrive Mon \u00b7 13h 50m \u00b7 694 km \u00b7 \u20b92,366"]
+   ],
+   to:"Sun 27 \u00b7 5:55 PM", t1:Date.UTC(2026,11,27,17,55),
+   cost:[["Bus temple \u2192 HYD \u00b7 Jagan A/C Sleeper",2366,2366]],
+   note:"Volvo A/C Sleeper \u00b7 Nov Sun fare \u20b92,366."},
+  {id:"ret_vkaveri1602", name:"V Kaveri 4:02 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["4:02 PM", "Tiruvannamalai", "depart Sun \u00b7 V A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["6:30 AM", "Hyderabad", "arrive Mon \u00b7 14h 28m \u00b7 694 km \u00b7 \u20b92,724"]
+   ],
+   to:"Sun 27 \u00b7 4:02 PM", t1:Date.UTC(2026,11,27,16,2),
+   cost:[["Bus temple \u2192 HYD \u00b7 V A/C Sleeper",2724,2724]],
+   note:"Volvo A/C Sleeper \u00b7 Nov Sun fare \u20b92,724."},
+  {id:"ret_bsr1900", name:"BSR 7 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["7:00 PM", "Tiruvannamalai", "depart Sun \u00b7 BSR A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["8:10 AM", "Hyderabad", "arrive Mon \u00b7 13h 10m \u00b7 694 km \u00b7 \u20b92,380"]
+   ],
+   to:"Sun 27 \u00b7 7:00 PM", t1:Date.UTC(2026,11,27,19,0),
+   cost:[["Bus temple \u2192 HYD \u00b7 BSR A/C Sleeper",2380,2380]],
+   note:"Volvo A/C Sleeper \u00b7 Nov Sun fare \u20b92,380."},
+  {id:"ret_pramukh1905", name:"Pramukh 7:05 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["7:05 PM", "Tiruvannamalai", "depart Sun \u00b7 Pramukh A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["8:00 AM", "Hyderabad", "arrive Mon \u00b7 12h 55m \u00b7 694 km \u00b7 \u20b92,869"]
+   ],
+   to:"Sun 27 \u00b7 7:05 PM", t1:Date.UTC(2026,11,27,19,5),
+   cost:[["Bus temple \u2192 HYD \u00b7 Pramukh A/C Sleeper",2869,2869]],
+   note:"Volvo A/C Sleeper \u00b7 Nov Sun fare \u20b92,869."},
+  {id:"ret_vkaveri1910", name:"V Kaveri 7:10 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["7:10 PM", "Tiruvannamalai", "depart Sun \u00b7 V A/C Sleeper <b class='tno'>(Tickets not open yet)</b>"],
+     ["7:30 AM", "Hyderabad", "arrive Mon \u00b7 12h 20m \u00b7 694 km \u00b7 \u20b93,381"]
+   ],
+   to:"Sun 27 \u00b7 7:10 PM", t1:Date.UTC(2026,11,27,19,10),
+   cost:[["Bus temple \u2192 HYD \u00b7 V A/C Sleeper",3381,3381]],
+   note:"Volvo A/C Sleeper \u00b7 Nov Sun fare \u20b93,381."},
+  {id:"ret_flixbus1815", name:"FlixBus 6:15 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["6:15 PM", "Tiruvannamalai", "depart Sun \u00b7 FlixBus A/C Sleeper"],
+     ["7:50 AM", "Hyderabad", "arrive Mon \u00b7 13h 35m \u00b7 694 km \u00b7 \u20b91,637"]
+   ],
+   to:"Sun 27 \u00b7 6:15 PM", t1:Date.UTC(2026,11,27,18,15),
+   cost:[["Bus temple \u2192 HYD \u00b7 FlixBus A/C Sleeper",1637,1637]],
+   note:"A/C Sleeper \u00b7 bookable Dec 27 at \u20b91,637."},
+  {id:"ret_vsr1830", name:"VSR 6:30 PM", via:"Bus",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 direct overnight bus",
+   ret:[
+     ["6:30 PM", "Tiruvannamalai", "depart Sun \u00b7 VSR A/C Sleeper"],
+     ["7:15 AM", "Hyderabad", "arrive Mon \u00b7 12h 45m \u00b7 694 km \u00b7 \u20b93,999"]
+   ],
+   to:"Sun 27 \u00b7 6:30 PM", t1:Date.UTC(2026,11,27,18,30),
+   cost:[["Bus temple \u2192 HYD \u00b7 VSR A/C Sleeper",3999,3999]],
+   note:"A/C Sleeper \u00b7 bookable Dec 27 at \u20b93,999."},
+  {id:"ret_12759", name:"12759 Chennai", via:"Chennai",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 12759 Charminar (daily)",
+   ret:[
+     ["~1:00 PM", "Tiruvannamalai", "depart Sun \u00b7 bus 207 km \u00b7 ~4h \u00b7 \u20b9279+"],
+     ["6:20 PM", "Chennai Beach", "depart Sun \u00b7 daily \u00b7 sleeper / 3A"],
+     ["8:10 AM", "Hyderabad Deccan", "arrive Mon \u00b7 13h 50m"]
+   ],
+   to:"Sun 27 \u00b7 1:00 PM", t1:Date.UTC(2026,11,27,13,0),
+   cost:[["Bus temple \u2192 Chennai",279,700],["Train Chennai \u2192 Hyderabad",365,1000]],
+   note:"Second daily Chennai return; full Sunday morning free."},
+  {id:"ret_17654", name:"17654 Villupuram", via:"Villupuram",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 17654 PDY\u2013KCG (Tue/Fri/Sun)",
+   ret:[
+     ["~10:30 AM", "Tiruvannamalai", "depart Sun \u00b7 bus 65 km \u00b7 ~1.5h \u00b7 ~\u20b9120"],
+     ["1:40 PM", "Villupuram Jn", "depart Sun \u00b7 18h 15m"],
+     ["7:55 AM", "Kacheguda", "arrive Mon"]
+   ],
+   to:"Sun 27 \u00b7 10:30 AM", t1:Date.UTC(2026,11,27,10,30),
+   cost:[["Bus temple \u2192 Villupuram",120,200],["Train Villupuram \u2192 KCG",420,1140]],
+   note:"Shortest hop to a main-line train; early Kacheguda arrival."},
+  {id:"ret_22716", name:"22716 Katpadi", via:"Katpadi",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 22716 MDU\u2013KCG SF (Sun)",
+   ret:[
+     ["~8:00 PM", "Tiruvannamalai", "depart Sun \u00b7 bus 91 km \u00b7 ~2h \u00b7 \u20b9160"],
+     ["11:05 PM", "Katpadi Jn", "depart Sun \u00b7 sleeper / 3A"],
+     ["12:40 PM", "Kacheguda", "arrive Mon \u00b7 13h 35m"]
+   ],
+   to:"Sun 27 \u00b7 8:00 PM", t1:Date.UTC(2026,11,27,20,0),
+   cost:[["Bus temple \u2192 Katpadi",160,250],["Train Katpadi \u2192 KCG",380,1030]],
+   note:"Sunday-only late train; long wait at Katpadi past midnight."},
+  {id:"ret_17425", name:"17425 Tirupati", via:"Tirupati",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 17425 TPTY\u2013SNSI (Sun)",
+   ret:[
+     ["~10:30 PM", "Tiruvannamalai", "depart Sat \u00b7 TNSTC bus ~200 km \u00b7 ~5h"],
+     ["4:00 AM", "Tirupati", "depart Sun \u00b7 sleeper / 3A"],
+     ["4:00 PM", "Secunderabad", "arrive Sun \u00b7 12h"]
+   ],
+   to:"Sat 26 \u00b7 10:30 PM", t1:Date.UTC(2026,11,26,22,30),
+   cost:[["Bus temple \u2192 Tirupati",250,400],["Train Tirupati \u2192 SC",340,930]],
+   note:"Only way home on Sunday itself \u2014 but means a Saturday-night bus to Tirupati."},
+  {id:"ret_12769", name:"12769 Tirupati", via:"Tirupati",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 12769 Seven Hills (Mon)",
+   ret:[
+     ["~10:30 AM", "Tiruvannamalai", "depart Sun \u00b7 bus ~200 km \u00b7 ~5h"],
+     ["3:45 PM", "Tirupati", "depart Sun \u00b7 sleeper / 3A"],
+     ["4:25 AM", "Secunderabad", "arrive Mon \u00b7 12h 40m"]
+   ],
+   to:"Sun 27 \u00b7 10:30 AM", t1:Date.UTC(2026,11,27,10,30),
+   cost:[["Bus temple \u2192 Tirupati",250,400],["Train Tirupati \u2192 SC",340,930]],
+   note:"Monday 4:25 AM arrival; combine darshan with Tirupati."},
+  {id:"ret_17433", name:"17433 Tirupati", via:"Tirupati",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 17433 TPTY\u2013RXL (Mon)",
+   ret:[
+     ["~3:00 AM", "Tiruvannamalai", "depart Sun \u00b7 bus ~200 km \u00b7 ~5h"],
+     ["8:15 AM", "Tirupati", "depart Sun \u00b7 sleeper / 3A"],
+     ["9:25 PM", "Secunderabad", "arrive Mon \u00b7 13h 10m"]
+   ],
+   to:"Sun 27 \u00b7 3:00 AM", t1:Date.UTC(2026,11,27,3,0),
+   cost:[["Bus temple \u2192 Tirupati",250,400],["Train Tirupati \u2192 SC",340,930]],
+   note:"Brutal 3 AM start; lands Secunderabad 9:25 PM Monday."},
+  {id:"ret_07194", name:"07194 Katpadi SPL", via:"Katpadi",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 07194 QLN\u2013HYB Spl (Mon, till 1 Dec)",
+   ret:[
+     ["~10:30 PM", "Tiruvannamalai", "depart Sun \u00b7 bus 91 km \u00b7 ~2h \u00b7 \u20b9160"],
+     ["1:05 AM", "Katpadi Jn", "depart Mon \u00b7 special \u00b7 sleeper / 3A"],
+     ["6:30 PM", "Hyderabad Deccan", "arrive Mon \u00b7 17h 25m"]
+   ],
+   to:"Sun 27 \u00b7 10:30 PM", t1:Date.UTC(2026,11,27,22,30),
+   cost:[["Bus temple \u2192 Katpadi",160,250],["Train Katpadi \u2192 HYB",380,1030]],
+   note:"Notified only till 1 Dec \u2014 verify extension before counting on it."},
+{
+   id: "ret_07192",
+   name: "07192 Katpadi",
+   via: "Katpadi",
+   retH: "Back \u00b7 Sun 27 Dec \u2014 07192 SCT\u2013CHZ Spl (Sun)",
+   ret: [
+    [
+     "~5:30 AM",
+     "Tiruvannamalai",
+     "depart Sun \u00b7 bus 91 km \u00b7 ~2h \u00b7 \u20b9160"
+    ],
+    [
+     "8:20 AM",
+     "Katpadi Jn",
+     "depart Sun \u00b7 sleeper / 3A"
+    ],
+    [
+     "12:30 AM",
+     "Charlapalli (CHZ)",
+     "arrive Mon \u00b7 16h 10m"
+    ]
+   ],
+   to: "Sun 27 \u00b7 5:30 AM",
+   t1:Date.UTC(2026,11,27,5,30),
+   cost: [
+    [
+     "Bus temple \u2192 Katpadi",
+     160,
+     250
+    ],
+    [
+     "Train Katpadi \u2192 CHZ",
+     380,
+     1030
+    ]
+   ],
+   note: "Sunday morning special-path via Katpadi."
+  },
+  {
+   id: "ret_12790",
+   name: "12790 Katpadi",
+   via: "Katpadi",
+   retH: "Back \u00b7 Sun 27 Dec \u2014 12790 Kumta\u2013KCG (Sun)",
+   ret: [
+    [
+     "~7:00 AM",
+     "Tiruvannamalai",
+     "depart Sun \u00b7 bus 91 km \u00b7 ~2h \u00b7 \u20b9160"
+    ],
+    [
+     "9:35 AM",
+     "Katpadi Jn",
+     "depart Sun \u00b7 sleeper / 3A"
+    ],
+    [
+     "11:40 PM",
+     "Kacheguda",
+     "arrive Sun \u00b7 14h 05m"
+    ]
+   ],
+   to: "Sun 27 \u00b7 7:00 AM",
+   t1:Date.UTC(2026,11,27,7,0),
+   cost: [
+    [
+     "Bus temple \u2192 Katpadi",
+     160,
+     250
+    ],
+    [
+     "Train Katpadi \u2192 KCG",
+     380,
+     1030
+    ]
+   ],
+   note: "Same-night Kacheguda arrival, 11:40 PM Sunday."
+  },
+  {
+   id: "ret_07536",
+   name: "07536 Villupuram",
+   via: "Villupuram",
+   retH: "Back \u00b7 Sun 27 Dec \u2014 07536 NCJ\u2013CHZ Spl (Sun)",
+   ret: [
+    [
+     "~7:00 AM",
+     "Tiruvannamalai",
+     "depart Sun \u00b7 bus 65 km \u00b7 ~1.5h \u00b7 ~\u20b9120"
+    ],
+    [
+     "9:10 AM",
+     "Villupuram Jn",
+     "depart Sun \u00b7 sleeper / 3A"
+    ],
+    [
+     "3:45 AM",
+     "Charlapalli (CHZ)",
+     "arrive Mon \u00b7 18h 35m"
+    ]
+   ],
+   to: "Sun 27 \u00b7 7:00 AM",
+   t1:Date.UTC(2026,11,27,7,0),
+   cost: [
+    [
+     "Bus temple \u2192 Villupuram",
+     120,
+     200
+    ],
+    [
+     "Train Villupuram \u2192 CHZ",
+     405,
+     1110
+    ]
+   ],
+   note: "Sunday special extended past mid-Nov \u2014 verify."
+  },
+  {
+   id: "ret_17405",
+   name: "17405 Tirupati",
+   via: "Tirupati",
+   retH: "Back \u00b7 Sun 27 Dec \u2014 17405 Krishna (daily)",
+   ret: [
+    [
+     "~11:30 PM",
+     "Tiruvannamalai",
+     "depart Sat \u00b7 bus ~200 km \u00b7 ~5h"
+    ],
+    [
+     "5:40 AM",
+     "Tirupati",
+     "depart Sun \u00b7 daily \u00b7 sleeper / 3A"
+    ],
+    [
+     "8:15 PM",
+     "Charlapalli (CHZ)",
+     "arrive Sun \u00b7 14h 35m"
+    ]
+   ],
+   to: "Sat 26 \u00b7 11:30 PM",
+   t1:Date.UTC(2026,11,26,23,30),
+   cost: [
+    [
+     "Bus temple \u2192 Tirupati",
+     250,
+     400
+    ],
+    [
+     "Train Tirupati \u2192 SC",
+     340,
+     930
+    ]
+   ],
+   note: "Daily; Saturday-night bus, home Sunday night."
+  },
+  {
+   id: "ret_12793",
+   name: "12793 Tirupati",
+   via: "Tirupati",
+   retH: "Back \u00b7 Sun 27 Dec \u2014 12793 Rayalaseema (daily)",
+   ret: [
+    [
+     "~12:00 PM",
+     "Tiruvannamalai",
+     "depart Sun \u00b7 bus ~200 km \u00b7 ~5h"
+    ],
+    [
+     "5:25 PM",
+     "Tirupati",
+     "depart Sun \u00b7 daily \u00b7 sleeper / 3A"
+    ],
+    [
+     "5:40 AM",
+     "Secunderabad",
+     "arrive Mon \u00b7 12h 15m"
+    ]
+   ],
+   to: "Sun 27 \u00b7 12:00 PM",
+   t1:Date.UTC(2026,11,27,12,0),
+   cost: [
+    [
+     "Bus temple \u2192 Tirupati",
+     250,
+     400
+    ],
+    [
+     "Train Tirupati \u2192 SC",
+     340,
+     930
+    ]
+   ],
+   note: "Daily evening Tirupati departure."
+  },
+  {
+   id: "ret_12733",
+   name: "12733 Tirupati",
+   via: "Tirupati",
+   retH: "Back \u00b7 Sun 27 Dec \u2014 12733 Narayanadri (daily)",
+   ret: [
+    [
+     "~1:00 PM",
+     "Tiruvannamalai",
+     "depart Sun \u00b7 bus ~200 km \u00b7 ~5h"
+    ],
+    [
+     "6:20 PM",
+     "Tirupati",
+     "depart Sun \u00b7 daily \u00b7 sleeper / 3A"
+    ],
+    [
+     "6:45 AM",
+     "Lingampalli",
+     "arrive Mon \u00b7 12h 25m"
+    ]
+   ],
+   to: "Sun 27 \u00b7 1:00 PM",
+   t1:Date.UTC(2026,11,27,13,0),
+   cost: [
+    [
+     "Bus temple \u2192 Tirupati",
+     250,
+     400
+    ],
+    [
+     "Train Tirupati \u2192 SC",
+     340,
+     930
+    ]
+   ],
+   note: "Daily; Lingampalli arrival."
+  },
+  {
+   id: "ret_12798",
+   name: "12798 Tirupati",
+   via: "Tirupati",
+   retH: "Back \u00b7 Sun 27 Dec \u2014 12798 Venkatadri (daily)",
+   ret: [
+    [
+     "~1:30 PM",
+     "Tiruvannamalai",
+     "depart Sun \u00b7 bus ~200 km \u00b7 ~5h"
+    ],
+    [
+     "6:45 PM",
+     "Tirupati",
+     "depart Sun \u00b7 daily \u00b7 sleeper / 3A"
+    ],
+    [
+     "6:20 AM",
+     "Kacheguda",
+     "arrive Mon \u00b7 11h 35m"
+    ]
+   ],
+   to: "Sun 27 \u00b7 1:30 PM",
+   t1:Date.UTC(2026,11,27,13,30),
+   cost: [
+    [
+     "Bus temple \u2192 Tirupati",
+     250,
+     400
+    ],
+    [
+     "Train Tirupati \u2192 SC",
+     340,
+     930
+    ]
+   ],
+   note: "Daily; early Kacheguda arrival."
+  },
+  {
+   id: "ret_12731",
+   name: "12731 Tirupati",
+   via: "Tirupati",
+   retH: "Back \u00b7 Sun 27 Dec \u2014 12731 TPTY\u2013SC (Sun)",
+   ret: [
+    [
+     "~11:30 AM",
+     "Tiruvannamalai",
+     "depart Sun \u00b7 bus ~200 km \u00b7 ~5h"
+    ],
+    [
+     "5:00 PM",
+     "Tirupati",
+     "depart Sun \u00b7 sleeper / 3A"
+    ],
+    [
+     "7:24 AM",
+     "Secunderabad",
+     "arrive Mon \u00b7 14h 24m"
+    ]
+   ],
+   to: "Sun 27 \u00b7 11:30 AM",
+   t1:Date.UTC(2026,11,27,11,30),
+   cost: [
+    [
+     "Bus temple \u2192 Tirupati",
+     250,
+     400
+    ],
+    [
+     "Train Tirupati \u2192 SC",
+     340,
+     930
+    ]
+   ],
+   note: "Verify Sunday running."
+  },
+  {
+   id: "ret_16354",
+   name: "16354 Tirupati",
+   via: "Tirupati",
+   retH: "Back \u00b7 Sun 27 Dec \u2014 16354 NCJ\u2013KCG (Sun)",
+   ret: [
+    [
+     "~7:00 PM",
+     "Tiruvannamalai",
+     "depart Sat \u00b7 bus ~200 km \u00b7 ~5h"
+    ],
+    [
+     "12:35 AM",
+     "Tirupati",
+     "depart Sun \u00b7 sleeper / 3A"
+    ],
+    [
+     "12:40 PM",
+     "Kacheguda",
+     "arrive Sun \u00b7 12h 05m"
+    ]
+   ],
+   to: "Sat 26 \u00b7 7:00 PM",
+   t1:Date.UTC(2026,11,26,19,0),
+   cost: [
+    [
+     "Bus temple \u2192 Tirupati",
+     250,
+     400
+    ],
+    [
+     "Train Tirupati \u2192 KCG",
+     340,
+     930
+    ]
+   ],
+   note: "Overnight to Kacheguda by Sunday noon; verify day."
+  },
+  {
+   id: "ret_12763",
+   name: "12763 Tirupati",
+   via: "Tirupati",
+   retH: "Back \u00b7 Mon 28 Dec \u2014 12763 Padmavati (Mon)",
+   ret: [
+    [
+     "~11:30 AM",
+     "Tiruvannamalai",
+     "depart Mon \u00b7 bus ~200 km \u00b7 ~5h"
+    ],
+    [
+     "4:55 PM",
+     "Tirupati",
+     "depart Mon \u00b7 sleeper / 3A"
+    ],
+    [
+     "6:15 AM",
+     "Secunderabad",
+     "arrive Tue \u00b7 13h 20m"
+    ]
+   ],
+   to: "Mon 28 \u00b7 11:30 AM",
+   t1:Date.UTC(2026,11,28,11,30),
+   cost: [
+    [
+     "Bus temple \u2192 Tirupati",
+     250,
+     400
+    ],
+    [
+     "Train Tirupati \u2192 SC",
+     340,
+     930
+    ]
+   ],
+   note: "Monday option; home Tuesday morning."
+  },
+  {
+   id: "ret_17060",
+   name: "17060 Tiruchanur",
+   via: "Tirupati",
+   retH: "Back \u00b7 Mon 28 Dec \u2014 17060 TCNR\u2013CHZ (Mon)",
+   ret: [
+    [
+     "~10:30 AM",
+     "Tiruvannamalai",
+     "depart Mon \u00b7 bus to Tiruchanur ~200 km"
+    ],
+    [
+     "4:00 PM",
+     "Tiruchanur",
+     "depart Mon \u00b7 sleeper / 3A"
+    ],
+    [
+     "8:00 AM",
+     "Charlapalli (CHZ)",
+     "arrive Tue \u00b7 16h"
+    ]
+   ],
+   to: "Mon 28 \u00b7 10:30 AM",
+   t1:Date.UTC(2026,11,28,10,30),
+   cost: [
+    [
+     "Bus temple \u2192 Tirupati",
+     250,
+     400
+    ],
+    [
+     "Train Tirupati \u2192 SC",
+     340,
+     930
+    ]
+   ],
+   note: "Monday option via Tiruchanur; home Tuesday."
+  },
+{
+   id: "ret_flix26sat",
+   name: "FlixBus 6:15 PM",
+   via: "Bus",
+   retH: "Back \u00b7 Sat 26 Dec \u2014 direct overnight bus",
+   ret: [
+    [
+     "6:15 PM",
+     "Tiruvannamalai",
+     "depart Sat \u00b7 FlixBus A/C Sleeper"
+    ],
+    [
+     "7:50 AM",
+     "Hyderabad",
+     "arrive Sun \u00b7 13h 35m \u00b7 694 km \u00b7 \u20b93,332"
+    ]
+   ],
+   to: "Sat 26 \u00b7 6:15 PM",
+   t1:Date.UTC(2026,11,26,18,15),
+   cost: [
+    [
+     "Bus temple \u2192 HYD \u00b7 FlixBus A/C Sleeper",
+     3332,
+     3332
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 bookable Dec 26 at \u20b93,332."
+  },
+  {
+   id: "ret_vsr26sat",
+   name: "VSR 6:30 PM",
+   via: "Bus",
+   retH: "Back \u00b7 Sat 26 Dec \u2014 direct overnight bus",
+   ret: [
+    [
+     "6:30 PM",
+     "Tiruvannamalai",
+     "depart Sat \u00b7 VSR Tours A/C Sleeper"
+    ],
+    [
+     "7:15 AM",
+     "Hyderabad",
+     "arrive Sun \u00b7 12h 45m \u00b7 694 km \u00b7 \u20b93,999"
+    ]
+   ],
+   to: "Sat 26 \u00b7 6:30 PM",
+   t1:Date.UTC(2026,11,26,18,30),
+   cost: [
+    [
+     "Bus temple \u2192 HYD \u00b7 VSR Tours A/C Sleeper",
+     3999,
+     3999
+    ]
+   ],
+   note: "A/C Sleeper \u00b7 bookable Dec 26 at \u20b93,999."
+  },
+  {id:"sabariRT", name:"Sabari train", via:"Katpadi",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 Sabari SF 20630 (daily)",
+   ret:[
+     ["~6:30 PM", "Tiruvannamalai", "depart Sun \u00b7 bus to Katpadi \u00b7 ~2h \u00b7 \u20b9160"],
+     ["9:15 PM", "Katpadi Jn", "depart Sun \u00b7 Sabari 20630 \u00b7 sleeper / 3A"],
+     ["11:02 AM", "Secunderabad", "arrive Mon \u00b7 13h 47m"]
+   ],
+   to:"Sun 27 \u00b7 6:30 PM", t1:Date.UTC(2026,11,27,18,30),
+   cost:[["Bus temple \u2192 Katpadi",160,500],["Train Katpadi \u2192 SC",380,1030]],
+   note:"Cheapest way home; reaches Secunderabad 11:02 AM."},
+  {id:"chennaiRT", name:"Chennai train", via:"Chennai",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 12603 MAS\u2013Charlapalli (daily)",
+   ret:[
+     ["~10:00 AM", "Tiruvannamalai", "depart Sun \u00b7 bus 207 km \u00b7 ~4h \u00b7 \u20b9279+"],
+     ["4:45 PM", "Chennai Central", "depart Sun \u00b7 12603 \u00b7 sleeper / 3A"],
+     ["5:05 AM", "Charlapalli", "arrive Mon \u00b7 12h 20m"]
+   ],
+   to:"Sun 27 \u00b7 10:00 AM", t1:Date.UTC(2026,11,27,10,0),
+   cost:[["Bus temple \u2192 Chennai",279,700],["Train Chennai \u2192 Hyderabad",365,1000]],
+   note:"Earliest home (5:05 AM) but leaves the temple by ~10 AM Sunday."},
+  {id:"ret_16003", name:"16003 Chennai", via:"Chennai",
+   retH:"Back \u00b7 Sun 27 Dec \u2014 16003 MAS\u2013NSL (Sun)",
+   ret:[
+     ["~4:30 AM", "Tiruvannamalai", "depart Sun \u00b7 bus 207 km \u00b7 ~4h \u00b7 \u20b9279+"],
+     ["9:15 AM", "Mgr Chennai Ctr", "depart Sun \u00b7 weekly \u00b7 2A/3A/SL"],
+     ["10:50 PM", "Kacheguda", "arrive Sun \u00b7 13h 35m"]
+   ],
+   to:"Sun 27 \u00b7 4:30 AM", t1:Date.UTC(2026,11,27,4,30),
+   cost:[["Bus temple \u2192 Chennai",279,700],["Train Chennai \u2192 KCG",365,1000]],
+   note:"Crack-of-dawn bus to Chennai; home the same night, 10:50 PM."},
+];
+function dura(t0,t1){
+  var hrs = Math.round((t1-t0)/3600000);
+  var nights = new Date(t1).getUTCDate() - new Date(t0).getUTCDate();
+  return {hrs:hrs, txt:Math.round(hrs/24)+"D/"+nights+"N"};
+}
+var PLANS = [];
+OUTS.forEach(function(o){
+  RETS.forEach(function(r){
+    var d = dura(o.t0, r.t1);
+    if (!(d.hrs >= 0)) d = {hrs:"\u2014", txt:"overlap"};
+    var tags = [["t", o.range], ["t", d.txt+" at temple"]];
+    if (o.direct) tags.unshift(["win","Direct to temple"]);
+    if (o.leaveFri) tags.push(["t","Leave Fri"]);
+    if (o.id==="sabari24" && r.id==="ret_mythri1730") tags.unshift(["good","Recommended"]);
+    PLANS.push({
+      id:o.id+"+"+r.id, name:o.name+" + "+r.name, sub:o.range+" \u00b7 "+d.txt,
+      via:[o.via, r.via], tags:tags, outH:o.outH, out:o.out, retH:r.retH, ret:r.ret,
+      cost:o.cost.concat(r.cost), stay:[o.from, r.to, d.hrs+" h", d.txt],
+      note:"<b>"+o.name+" out, "+r.name+" back.</b> "+o.note+" "+r.note
+    });
+  });
+});
+
+function fmt(n){ return "₹" + n.toLocaleString("en-IN"); }
+function totals(p){
+  var l = 0, c = 0;
+  for (var i = 0; i < p.cost.length; i++){ l += p.cost[i][1]; c += p.cost[i][2]; }
+  return [l, c];
+}
+
+var outSel = document.getElementById("outSel");
+var retSel = document.getElementById("retSel");
+function legCost(rows){ var t = [0,0]; for (var i=0;i<rows.length;i++){ t[0]+=rows[i][1]; t[1]+=rows[i][2]; } return t; }
+function mkGroup(sel, label){
+  var g = document.createElement("optgroup");
+  g.label = label;
+  sel.appendChild(g);
+  return g;
+}
+var OUT_IDX = {}, RET_IDX = {};
+OUTS.forEach(function(o, i){ OUT_IDX[o.id] = i; });
+RETS.forEach(function(r, i){ RET_IDX[r.id] = i; });
+function addOpts(sel, groups){
+  groups.forEach(function(gg){
+    var g = mkGroup(sel, gg[0]);
+    gg[2].forEach(function(id){
+      var i = (sel === outSel ? OUT_IDX : RET_IDX)[id];
+      if (i === undefined) return;
+      var o = (sel === outSel ? OUTS : RETS)[i];
+      var t = legCost(o.cost);
+      var el = document.createElement("option");
+      el.value = i;
+      if (sel === outSel) { el.textContent = gg[1] + o.out[0][0] + " \u00b7 " + o.name + " \u2014 " + fmt(t[0]) + " / " + fmt(t[1]); }
+      else { var last = o.ret[o.ret.length-1]; var m = /arrive (\w+) \u00b7/.exec(last[2]); el.textContent = (m ? m[1] + " " : "") + last[0] + " \u00b7 " + o.name + " \u2014 " + fmt(t[0]) + " / " + fmt(t[1]); }
+      g.appendChild(el);
+    });
+  });
+}
+addOpts(outSel, [
+  ["Trains \u00b7 Thu 24", "Thu 24 \u00b7 ", ["out_17406","out_12708","out_17418","sabari24","out_12794","out_12734","out_12766","spl07001","chennai24","out_12764","out_12797"]],
+  ["Trains \u00b7 Fri 25", "Fri 25 \u00b7 ", ["out_12789","sabari25","out_17444","out_17653","out_12770","out_17434"]],
+  ["Buses \u00b7 Thu 24", "Thu 24 \u00b7 ", ["out_rainbow1635","out_mythri1745","out_vkaveri1745","out_rainbow1815","out_vsr1820","out_bsr1830","out_jagan1830","out_flixbus1940","out_pramukh1945","out_lg2020"]],
+  ["Buses \u00b7 Fri 25", "Fri 25 \u00b7 ", ["out_flix25fri","out_vsr25fri","out_fmyth1745","out_fmyth1845","out_frain1635","out_frain1815","out_fjagan1830","out_fvkav1745","out_flg2020","out_fpram1945","out_fbsr1830"]],
+]);
+addOpts(retSel, [
+  ["Trains \u00b7 arr Sun 27", "", ["ret_16354","ret_17425","ret_17405","ret_16003","ret_12790"]],
+  ["Trains \u00b7 arr Mon 28", "", ["ret_07192","ret_07536","ret_12769","chennaiRT","ret_12793","ret_12798","ret_12733","ret_12731","ret_17654","ret_12759","sabariRT","ret_22716","ret_07194","ret_17433"],
+  ["Trains \u00b7 arr Tue 29", "", ["ret_12763","ret_17060"]]],
+  ["Buses \u00b7 arr Sun 27", "", ["ret_flix26sat","ret_vsr26sat"]],
+  ["Buses \u00b7 arr Mon 28", "", ["ret_rainbow1720","ret_mythri1730","ret_lg1721","ret_vkaveri1602","ret_rainbow1847","ret_vsr1830","ret_vkaveri1910","ret_jagan1755","ret_flixbus1815","ret_pramukh1905","ret_bsr1900"]]
+]);
+outSel.value = OUT_IDX["sabari24"];
+retSel.value = RET_IDX["ret_mythri1730"];
+function flatIdx(){ return (+outSel.value)*RETS.length + (+retSel.value); }
+
+function stepsHTML(legs){
+  return legs.map(function(s){
+    return '<div class="step"><span class="tm">' + s[0] + '</span><span class="pl"><b>' + s[1] + '</b><small>' + s[2] + '</small></span></div>';
+  }).join("");
+}
+
+function render(){
+  var i = flatIdx();
+  var p = PLANS[i];
+  var t = totals(p);
+  document.getElementById("planTags").innerHTML = p.tags.map(function(g){
+    return g[0] === "t" ? '<span class="tag">' + g[1] + '</span>' : '<span class="pill ' + g[0] + '">' + g[1] + '</span>';
+  }).join("");
+  document.getElementById("outH").textContent = p.outH;
+  document.getElementById("outLegs").innerHTML = stepsHTML(p.out);
+  document.getElementById("retH").textContent = p.retH;
+  document.getElementById("retLegs").innerHTML = stepsHTML(p.ret);
+  document.getElementById("stayBox").innerHTML =
+    '<div><small>At temple from</small><b>' + p.stay[0] + '</b></div>' +
+    '<div class="stayfree"><b>' + p.stay[2] + ' free</b><small>' + p.stay[3] + '</small></div>' +
+    '<div style="text-align:right"><small>Leave by</small><b>' + p.stay[1] + '</b></div>';
+  var rows = '<div class="crow head"><span>Leg</span><span>Lean</span><span>Comf.</span></div>' +
+    p.cost.map(function(r){
+      return '<div class="crow"><span>' + r[0] + '</span><span>' + fmt(r[1]) + '</span><span>' + fmt(r[2]) + '</span></div>';
+    }).join("") +
+    '<div class="crow total"><span>Travel total</span><span>' + fmt(t[0]) + '</span><span>' + fmt(t[1]) + '</span></div>';
+  document.getElementById("costBox").innerHTML = rows;
+  document.getElementById("planNote").innerHTML = p.note;
+  syncURL();
+  console.log("plan " + p.id + " lean=" + t[0] + " comfort=" + t[1]);
+}
+
+function syncURL(){
+  try {
+    var u = new URL(window.location.href);
+    u.searchParams.set("out", OUTS[+outSel.value].id);
+    u.searchParams.set("back", RETS[+retSel.value].id);
+    window.history.replaceState(null, "", u.toString());
+  } catch(e){}
+}
+function loadFromURL(){
+  try {
+    var q = new URLSearchParams(window.location.search);
+    var oi = -1, ri = -1, i;
+    for (i=0;i<OUTS.length;i++){ if (OUTS[i].id === q.get("out")) oi = i; }
+    for (i=0;i<RETS.length;i++){ if (RETS[i].id === q.get("back")) ri = i; }
+    if (oi >= 0) outSel.value = oi;
+    if (ri >= 0) retSel.value = ri;
+  } catch(e){}
+}
+var RET_OK = {ret_mythri1730:1,ret_rainbow1720:1,ret_rainbow1847:1,ret_lg1721:1,ret_jagan1755:1,ret_vkaveri1602:1,ret_bsr1900:1,ret_pramukh1905:1,ret_vkaveri1910:1,ret_flixbus1815:1,ret_vsr1830:1,chennaiRT:1,ret_12759:1,ret_17654:1,ret_16003:1,ret_12769:1,ret_07192:1,ret_12790:1,ret_07536:1,ret_17405:1,ret_12793:1,ret_12733:1,ret_12798:1,ret_12731:1};
+var OUT_BAD = {out_17406:1,out_12708:1,out_17418:1};
+function winOn(){ return false; }
+function enabledRets(){ var idx = []; RETS.forEach(function(r, i){ if (!winOn() || RET_OK[r.id]) idx.push(i); }); return idx; }
+function enabledOuts(){ var idx = []; OUTS.forEach(function(o, i){ if (!winOn() || !OUT_BAD[o.id]) idx.push(i); }); return idx; }
+function applyWindow(){
+  var i, ri, oi;
+  for (i=0;i<retSel.options.length;i++){ ri = +retSel.options[i].value; retSel.options[i].disabled = !!(winOn() && !RET_OK[RETS[ri].id]); }
+  for (i=0;i<outSel.options.length;i++){ oi = +outSel.options[i].value; outSel.options[i].disabled = !!(winOn() && OUT_BAD[OUTS[oi].id]); }
+  if (retSel.options[+retSel.value] && retSel.options[+retSel.value].disabled) retSel.value = RET_IDX["ret_mythri1730"];
+  if (outSel.options[+outSel.value] && outSel.options[+outSel.value].disabled) outSel.value = OUT_IDX["sabari24"];
+  updateStats();
+}
+function updateStats(){
+  var en = enabledRets(), eo = enabledOuts(), ml = Infinity, mc = Infinity;
+  eo.forEach(function(oi){ var oc = legCost(OUTS[oi].cost); en.forEach(function(i){ var rc = legCost(RETS[i].cost); if (oc[0]+rc[0] < ml) ml = oc[0]+rc[0]; if (oc[1]+rc[1] < mc) mc = oc[1]+rc[1]; }); });
+  document.getElementById("stN").textContent = eo.length * en.length;
+  document.getElementById("stL").textContent = fmt(ml);
+  document.getElementById("stC").textContent = fmt(mc);
+}
+outSel.addEventListener("change", render);
+retSel.addEventListener("change", render);
+document.getElementById("shareBtn").addEventListener("click", function(){
+  var b = this;
+  function done(t){ var o = "Copy link to this plan"; b.textContent = t; setTimeout(function(){ b.textContent = o; }, 1500); }
+  syncURL();
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(window.location.href).then(function(){ done("Link copied"); }, function(){ done("Copy failed"); });
+  else done("Copy the URL bar");
+});
+loadFromURL();
+applyWindow();
+render();
+</script>
+
+
+</body></html>
