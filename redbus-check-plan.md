@@ -26,7 +26,6 @@ the buses that leave late enough to be a real alternative to the FlixBus 21:15.
 - Departure time, arrival time, duration
 - Fare (₹) = average of the 10 cheapest available **sleeper** berths in the seat layout
  - Seats left = available **sleeper** berths only (exclude seater berths)
-- Live tracking available (yes/no)
 
 ## Target band
 

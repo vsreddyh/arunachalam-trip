@@ -16,7 +16,7 @@ Fare = average of the 10 cheapest available sleeper berths per bus (from the sea
 | 23:00 | Sri Krishna Travels | 3000 | 30 | 09:30 | Fine 09:30 arrival; 30 sleeper berths. |
 | 22:50 | Bharathi Travels | 5000 | 30 | 09:00 | Full fare for a Scania; 09:00 arrival. |
 | 22:40 | FlixBus | 2796.19 | 36 | 10:10 | 1h50 later arrival than the 21:15 FlixBus for the same avg. |
-| 22:30 | ZENZU BUS | 2999 | 36 | 08:30 | Live tracking; arrives 08:30, 10 min after the 21:15 FlixBus. Strong. |
+| 22:30 | ZENZU BUS | 2999 | 36 | 08:30 | Arrives 08:30, 10 min after the 21:15 FlixBus. Strong. |
 | 22:30 | Sri Krishna Travels | 2560 | 26 | 09:00 | Cheapest proper sleeper in the window; 26 berths left. |
 | 22:30 | MRM Travels | 5999 | 17 | 12:10 | Most expensive in the window with a 12:10 arrival — skip. |
 | 22:05 | zingbus Maxx | 5209 | 39 | 06:50 | Fastest bus in the window (8h45); priciest sensible option. |

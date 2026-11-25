@@ -70,7 +70,6 @@
   .who{font-weight:650; font-size:14px; color:var(--night)}
   .meta{font-size:12px; color:var(--muted); margin-top:2px}
   .fare{text-align:right; font-family:Georgia,serif; font-size:18px; color:var(--night); white-space:nowrap}
-  .live{color:var(--leaf); font-weight:600}
 
   .scroll{overflow-x:auto; margin-top:14px}
   table{border-collapse:collapse; width:100%; font-size:13px; min-width:820px}
@@ -142,26 +141,26 @@
 
 <script>
 const BUSES = [
-  {d:"23:45",a:"10:25",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:5250,s:22,l:false},
-  {d:"23:30",a:"10:10",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3254.5,s:22,l:false},
-  {d:"23:10",a:"10:45",o:"LION Travels",t:"Bharat Benz A/C Sleeper (2+1)",dur:"11h35",f:4999,s:30,l:false},
-  {d:"23:00",a:"09:30",o:"Sri Krishna Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h30",f:3000,s:30,l:false},
-  {d:"22:50",a:"09:00",o:"Bharathi Travels",t:"Scania A/C Sleeper (2+1)",dur:"10h10",f:5000,s:30,l:false},
-  {d:"22:40",a:"10:10",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h30",f:2796.19,s:36,l:false},
-  {d:"22:30",a:"08:30",o:"ZENZU BUS",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h00",f:2999,s:36,l:true},
-  {d:"22:30",a:"09:00",o:"Sri Krishna Travels",t:"Volvo B11R A/C Sleeper (2+1)",dur:"10h30",f:2560,s:26,l:false},
-  {d:"22:30",a:"12:10",o:"MRM Travels",t:"A/C Seater/Sleeper (2+1)",dur:"13h40",f:5999,s:17,l:false},
-  {d:"22:05",a:"06:50",o:"zingbus Maxx",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"8h45",f:5209,s:39,l:true},
-  {d:"22:00",a:"09:30",o:"V Kaveri Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"11h30",f:3090,s:29,l:false},
-  {d:"22:00",a:"09:00",o:"Bharathi Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"11h00",f:3843,s:32,l:false},
-  {d:"22:00",a:"10:00",o:"Sri Tulasi Tours",t:"A/C Sleeper (2+1)",dur:"12h00",f:2199,s:23,l:false},
-  {d:"22:00",a:"08:40",o:"SBM TRAANSPORT",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h40",f:3421.95,s:24,l:false},
-  {d:"21:45",a:"10:00",o:"Vikram Travels",t:"A/C Sleeper (2+1)",dur:"12h15",f:2935,s:26,l:false},
-  {d:"21:40",a:"09:20",o:"AVK Travels",t:"Bharat Benz A/C Seater/Sleeper (2+1)",dur:"11h40",f:2699,s:22,l:false},
-  {d:"21:40",a:"08:55",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h15",f:2796.19,s:35,l:false},
-  {d:"21:30",a:"08:00",o:"Madesh Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"10h30",f:3099,s:40,l:true},
-  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3013,s:29,l:false},
-  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3000,s:40,l:false}
+  {d:"23:45",a:"10:25",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:5250,s:22},
+  {d:"23:30",a:"10:10",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3254.5,s:22},
+  {d:"23:10",a:"10:45",o:"LION Travels",t:"Bharat Benz A/C Sleeper (2+1)",dur:"11h35",f:4999,s:30},
+  {d:"23:00",a:"09:30",o:"Sri Krishna Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h30",f:3000,s:30},
+  {d:"22:50",a:"09:00",o:"Bharathi Travels",t:"Scania A/C Sleeper (2+1)",dur:"10h10",f:5000,s:30},
+  {d:"22:40",a:"10:10",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h30",f:2796.19,s:36},
+  {d:"22:30",a:"08:30",o:"ZENZU BUS",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h00",f:2999,s:36},
+  {d:"22:30",a:"09:00",o:"Sri Krishna Travels",t:"Volvo B11R A/C Sleeper (2+1)",dur:"10h30",f:2560,s:26},
+  {d:"22:30",a:"12:10",o:"MRM Travels",t:"A/C Seater/Sleeper (2+1)",dur:"13h40",f:5999,s:17},
+  {d:"22:05",a:"06:50",o:"zingbus Maxx",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"8h45",f:5209,s:39},
+  {d:"22:00",a:"09:30",o:"V Kaveri Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"11h30",f:3090,s:29},
+  {d:"22:00",a:"09:00",o:"Bharathi Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"11h00",f:3843,s:32},
+  {d:"22:00",a:"10:00",o:"Sri Tulasi Tours",t:"A/C Sleeper (2+1)",dur:"12h00",f:2199,s:23},
+  {d:"22:00",a:"08:40",o:"SBM TRAANSPORT",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h40",f:3421.95,s:24},
+  {d:"21:45",a:"10:00",o:"Vikram Travels",t:"A/C Sleeper (2+1)",dur:"12h15",f:2935,s:26},
+  {d:"21:40",a:"09:20",o:"AVK Travels",t:"Bharat Benz A/C Seater/Sleeper (2+1)",dur:"11h40",f:2699,s:22},
+  {d:"21:40",a:"08:55",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h15",f:2796.19,s:35},
+  {d:"21:30",a:"08:00",o:"Madesh Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"10h30",f:3099,s:40},
+  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3013,s:29},
+  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3000,s:40}
 ];
 
 const money = f => "₹" + f.toLocaleString("en-IN", {maximumFractionDigits: 0});
@@ -172,7 +171,7 @@ function busCard(b, i){
     <div class="dep">${b.d}<small>→ ${b.a}</small></div>
     <div>
       <div class="who">${b.o}</div>
-      <div class="meta">${b.t} · ${b.dur} · ${b.s} sleeper seats${b.l ? ' · <span class="live">live tracking</span>' : ""}</div>
+      <div class="meta">${b.t} · ${b.dur} · ${b.s} sleeper seats</div>
       <button class="chartbtn" data-idx="${i}" aria-expanded="false" aria-controls="pan-${i}">Show price &amp; seats</button>
     </div>
     <div class="fare">${money(b.f)}</div>
