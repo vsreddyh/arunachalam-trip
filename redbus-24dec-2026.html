@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>redBus sleeper shortlist — Hyderabad → Chennai, 24 Dec 2026</title>
+<style>
+  :root{
+    --night:#12122b; --ink:#23233d; --plum:#2c2653; --gold:#e8b34b; --gold-deep:#c98a2b;
+    --saffron:#e07b39; --cream:#faf5ea; --paper:#fffdf7; --leaf:#0f6a5c; --rose:#c14b6a;
+    --muted:#6b6580; --line:#e9dfc9; --shadow:0 10px 30px rgba(20,16,50,.12); --r:18px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.45; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:34px 22px 56px}
+  h1,h2{font-family:Georgia,"Times New Roman",serif; margin:0; letter-spacing:-.01em}
+  h1{font-size:clamp(26px,3.4vw,38px); color:var(--night)}
+  h2{font-size:20px; color:var(--plum)}
+  .eyebrow{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-deep); font-weight:700}
+  header.top{border-bottom:2px solid var(--line); padding-bottom:20px; margin-bottom:24px}
+  .sub{color:var(--muted); margin-top:6px; font-size:14px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+  .chip{
+    background:var(--paper); border:1px solid var(--line); border-radius:999px;
+    padding:5px 12px; font-size:12px; color:var(--plum); box-shadow:0 1px 2px rgba(20,16,50,.04)
+  }
+  .chip b{color:var(--night)}
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--shadow); padding:20px}
+  .card + .card{margin-top:22px}
+  .card-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:4px}
+  .hint{font-size:12.5px; color:var(--muted)}
+
+  .ops{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+  @media (max-width:880px){ .ops{grid-template-columns:1fr} }
+  .chartbtn{
+    font:inherit; font-size:11.5px; font-weight:600; color:var(--plum);
+    background:#fff; border:1px solid var(--line); border-radius:8px;
+    padding:3px 9px; margin-top:6px; cursor:pointer; white-space:nowrap;
+  }
+  .chartbtn:hover{background:#fdf7e8; border-color:var(--gold)}
+  .chartbtn[aria-expanded="true"]{background:var(--plum); border-color:var(--plum); color:#fff}
+  td .chartbtn{margin-top:0}
+  .panel{border:1px solid var(--line); border-top:0; border-radius:0 0 14px 14px; background:#fdf9ef; margin-top:-11px}
+  .panel-slot{padding:12px 14px 10px}
+  .panel svg{display:block; width:100%; height:auto}
+  .phead{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; font-size:12px; color:var(--muted); margin-bottom:2px}
+  .phead b{font-family:Georgia,serif; font-size:15px; color:var(--night); font-weight:600}
+  .plegend{display:flex; gap:14px; flex-wrap:wrap; font-size:11px; color:var(--muted); margin-top:2px}
+  .plegend span{display:inline-flex; align-items:center; gap:5px}
+  .swatch{width:8px; height:8px; border-radius:50%; display:inline-block}
+  tr.detail td{padding:0; background:#fdf9ef}
+  tr.detail .panel{border-radius:0; border-left:0; border-right:0; margin-top:0}
+  .op-head{display:flex; align-items:center; gap:10px; margin-bottom:12px}
+  .badge{font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:4px 9px; border-radius:8px; color:#fff}
+  .b-intrcity{background:var(--plum)}
+  .b-flix{background:var(--leaf)}
+  .op-list{display:flex; flex-direction:column; gap:10px}
+  .bus{
+    border:1px solid var(--line); border-radius:14px; padding:12px 14px; background:#fff;
+    display:grid; grid-template-columns:78px 1fr auto; gap:12px; align-items:center;
+  }
+  .dep{font-family:Georgia,serif; font-size:22px; color:var(--night); line-height:1}
+  .dep small{display:block; font-family:system-ui,sans-serif; font-size:11px; color:var(--muted); margin-top:3px}
+  .who{font-weight:650; font-size:14px; color:var(--night)}
+  .meta{font-size:12px; color:var(--muted); margin-top:2px}
+  .fare{text-align:right; font-family:Georgia,serif; font-size:18px; color:var(--night); white-space:nowrap}
+  .live{color:var(--leaf); font-weight:600}
+
+  .scroll{overflow-x:auto; margin-top:14px}
+  table{border-collapse:collapse; width:100%; font-size:13px; min-width:820px}
+  th,td{padding:9px 10px; text-align:left; border-bottom:1px solid var(--line); vertical-align:middle}
+  th{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:700; background:#fdf9ef}
+  tbody tr:hover{background:#fdf7e8}
+  td.time{font-family:Georgia,serif; font-size:15px; color:var(--night); white-space:nowrap}
+  td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+  .opname{font-weight:600; color:var(--night)}
+  .type{color:var(--muted); font-size:12px}
+  .note{font-size:12.5px; color:var(--muted); margin-top:14px}
+  footer{margin-top:26px; padding-top:16px; border-top:1px solid var(--line); font-size:12px; color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">redBus · read-only check</div>
+    <h1>Hyderabad → Chennai · Thu 24 Dec 2026</h1>
+    <div class="sub">Sleeper buses departing 21:30–23:45, latest first. *Fare = average of the 10 cheapest available sleeper berths per bus. Last updated 25 Nov 2026, ~23:20 IST.</div>
+    <div class="chips">
+      <span class="chip"><b>20</b> buses in window</span>
+      <span class="chip">Window <b>21:30 – 23:45</b></span>
+      <span class="chip">All <b>A/C sleeper</b></span>
+    </div>
+  </header>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>Priority operators</h2>
+      <span class="hint">IntrCity and FlixBus first, latest departure at the top</span>
+    </div>
+    <div class="ops">
+      <div>
+        <div class="op-head"><span class="badge b-intrcity">IntrCity SmartBus</span><span class="hint">2 buses</span></div>
+        <div class="op-list" id="intrcity"></div>
+      </div>
+      <div>
+        <div class="op-head"><span class="badge b-flix">FlixBus</span><span class="hint">2 buses</span></div>
+        <div class="op-list" id="flix"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2>All other operators</h2>
+      <span class="hint">16 buses · 21:30–23:45 · latest first</span>
+    </div>
+    <div class="scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Dep</th><th>Arr</th><th>Operator</th><th>Type</th><th>Dur</th>
+            <th>Avg fare ₹*</th><th>Sleeper seats</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="others"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    Source: redBus SRP, Hyderabad → Chennai, 24 Dec 2026, Sleeper filter, sorted Departure time descending. *Fare = average of the 10 cheapest available sleeper berths from the seat layout at capture time (sleeper berths only; seater berths excluded). Seat counts are available sleeper berths only. Read-only — no seats held, nothing booked.
+  </footer>
+</div>
+
+<script>
+const BUSES = [
+  {d:"23:45",a:"10:25",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:5250,s:22,l:false},
+  {d:"23:30",a:"10:10",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3254.5,s:22,l:false},
+  {d:"23:10",a:"10:45",o:"LION Travels",t:"Bharat Benz A/C Sleeper (2+1)",dur:"11h35",f:4999,s:30,l:false},
+  {d:"23:00",a:"09:30",o:"Sri Krishna Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h30",f:3000,s:30,l:false},
+  {d:"22:50",a:"09:00",o:"Bharathi Travels",t:"Scania A/C Sleeper (2+1)",dur:"10h10",f:5000,s:30,l:false},
+  {d:"22:40",a:"10:10",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h30",f:2796.19,s:36,l:false},
+  {d:"22:30",a:"08:30",o:"ZENZU BUS",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h00",f:2999,s:36,l:true},
+  {d:"22:30",a:"09:00",o:"Sri Krishna Travels",t:"Volvo B11R A/C Sleeper (2+1)",dur:"10h30",f:2560,s:26,l:false},
+  {d:"22:30",a:"12:10",o:"MRM Travels",t:"A/C Seater/Sleeper (2+1)",dur:"13h40",f:5999,s:17,l:false},
+  {d:"22:05",a:"06:50",o:"zingbus Maxx",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"8h45",f:5209,s:39,l:true},
+  {d:"22:00",a:"09:30",o:"V Kaveri Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"11h30",f:3090,s:29,l:false},
+  {d:"22:00",a:"09:00",o:"Bharathi Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"11h00",f:3843,s:32,l:false},
+  {d:"22:00",a:"10:00",o:"Sri Tulasi Tours",t:"A/C Sleeper (2+1)",dur:"12h00",f:2199,s:23,l:false},
+  {d:"22:00",a:"08:40",o:"SBM TRAANSPORT",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h40",f:3421.95,s:24,l:false},
+  {d:"21:45",a:"10:00",o:"Vikram Travels",t:"A/C Sleeper (2+1)",dur:"12h15",f:2935,s:26,l:false},
+  {d:"21:40",a:"09:20",o:"AVK Travels",t:"Bharat Benz A/C Seater/Sleeper (2+1)",dur:"11h40",f:2699,s:22,l:false},
+  {d:"21:40",a:"08:55",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h15",f:2796.19,s:35,l:false},
+  {d:"21:30",a:"08:00",o:"Madesh Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"10h30",f:3099,s:40,l:true},
+  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3013,s:29,l:false},
+  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3000,s:40,l:false}
+];
+
+const money = f => "₹" + f.toLocaleString("en-IN", {maximumFractionDigits: 0});
+
+/* ---------- priority operator lists ---------- */
+function busCard(b, i){
+  return `<div class="bus">
+    <div class="dep">${b.d}<small>→ ${b.a}</small></div>
+    <div>
+      <div class="who">${b.o}</div>
+      <div class="meta">${b.t} · ${b.dur} · ${b.s} sleeper seats${b.l ? ' · <span class="live">live tracking</span>' : ""}</div>
+      <button class="chartbtn" data-idx="${i}" aria-expanded="false" aria-controls="pan-${i}">Show price &amp; seats</button>
+    </div>
+    <div class="fare">${money(b.f)}</div>
+  </div>
+  <div class="panel" id="pan-${i}" hidden><div class="panel-slot"></div></div>`;
+}
+const intrcity = BUSES.map((b, i) => ({b, i})).filter(x => x.b.o === "IntrCity SmartBus");
+const flix = BUSES.map((b, i) => ({b, i})).filter(x => x.b.o === "FlixBus");
+document.getElementById("intrcity").innerHTML = intrcity.map(x => busCard(x.b, x.i)).join("");
+document.getElementById("flix").innerHTML = flix.map(x => busCard(x.b, x.i)).join("");
+
+/* ---------- per-bus fare & seat charts ---------- */
+const START_DATE = "2026-11-25";
+const CAPTURES = [{ date: START_DATE, buses: BUSES }];
+
+function withKeys(buses){
+  const seen = new Map();
+  return buses.map(b => {
+    const base = `${b.o}|${b.d}|${b.t}|${b.a}`;
+    const n = (seen.get(base) || 0) + 1;
+    seen.set(base, n);
+    return {...b, key: `${base}#${n}`};
+  });
+}
+const keyed = CAPTURES.map(c => ({ date: c.date, buses: withKeys(c.buses) }));
+const latest = keyed[keyed.length - 1];
+const seriesFor = key => keyed
+  .map(c => { const b = c.buses.find(x => x.key === key); return b ? {date: c.date, f: b.f, s: b.s} : null; })
+  .filter(Boolean);
+
+const ts = d => typeof d === "number" ? d : Date.parse(d + "T00:00:00Z");
+const tick = d => {
+  const dt = new Date(d + "T00:00:00Z");
+  return dt.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][dt.getUTCMonth()];
+};
+
+function chartSvg(b, compact){
+  const series = seriesFor(b.key);
+  const cfg = compact
+    ? {W:520, H:220, m:{t:30, r:42, b:34, l:52}, tick:12, val:12.5, base:11, axis:11}
+    : {W:760, H:232, m:{t:28, r:48, b:34, l:58}, tick:11, val:11.5, base:10.5, axis:10.5};
+  const W = cfg.W, H = cfg.H, m = cfg.m;
+  const pw = W - m.l - m.r, ph = H - m.t - m.b;
+  const DAY = 86400000;
+  const t0 = ts(series[0].date) - 2 * DAY;
+  const t1 = ts(series[series.length - 1].date) + 2 * DAY;
+  const x = d => m.l + (ts(d) - t0) / (t1 - t0) * pw;
+  const yF = v => m.t + (1 - v / 6000) * ph;
+  const yS = v => m.t + (1 - v / 50) * ph;
+
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Average sleeper fare and sleeper seats by day for ${b.o}, ${b.d} departure">`;
+
+  [0, 3000, 6000].forEach(v => {
+    s += `<line x1="${m.l}" y1="${yF(v)}" x2="${W - m.r}" y2="${yF(v)}" stroke="#f4eee0" stroke-width="1"/>`;
+    s += `<text x="${m.l - 8}" y="${yF(v) + 4}" font-size="${cfg.tick}" fill="#6b6580" text-anchor="end">${v === 0 ? "0" : v / 1000 + "k"}</text>`;
+  });
+  [0, 25, 50].forEach(v => {
+    s += `<text x="${W - m.r + 8}" y="${yS(v) + 4}" font-size="${cfg.tick}" fill="#0f6a5c">${v}</text>`;
+  });
+  [t0, t1].forEach(t => {
+    s += `<line x1="${x(t)}" y1="${m.t}" x2="${x(t)}" y2="${H - m.b}" stroke="#f8f3e6" stroke-width="1"/>`;
+  });
+
+  if (series.length > 1) {
+    s += `<polyline points="${series.map(pt => `${x(pt.date)},${yF(pt.f)}`).join(" ")}" fill="none" stroke="#2c2653" stroke-width="2"/>`;
+    s += `<polyline points="${series.map(pt => `${x(pt.date)},${yS(pt.s)}`).join(" ")}" fill="none" stroke="#0f6a5c" stroke-width="1.8" stroke-dasharray="5 4"/>`;
+  } else {
+    const only = series[0];
+    s += `<line x1="${m.l}" y1="${yF(only.f)}" x2="${W - m.r}" y2="${yF(only.f)}" stroke="#2c2653" stroke-width="1.4" stroke-dasharray="3 4" opacity=".4"/>`;
+    s += `<line x1="${m.l}" y1="${yS(only.s)}" x2="${W - m.r}" y2="${yS(only.s)}" stroke="#0f6a5c" stroke-width="1.2" stroke-dasharray="2 4" opacity=".35"/>`;
+  }
+
+  series.forEach(pt => {
+    s += `<circle cx="${x(pt.date)}" cy="${yF(pt.f)}" r="4.6" fill="#2c2653" stroke="#fffdf7" stroke-width="1.2"/>`;
+    s += `<circle cx="${x(pt.date)}" cy="${yS(pt.s)}" r="3.8" fill="#0f6a5c" stroke="#fffdf7" stroke-width="1.2"/>`;
+  });
+
+  const p = series[series.length - 1];
+  const lx = x(p.date);
+  s += `<text x="${lx - 11}" y="${yF(p.f) + 4}" font-size="${cfg.val}" font-weight="700" fill="#2c2653" text-anchor="end">${money(p.f)}</text>`;
+  s += `<text x="${lx + 11}" y="${yS(p.s) + 4}" font-size="${cfg.val}" font-weight="700" fill="#0f6a5c">${p.s} sleeper</text>`;
+
+  s += `<text x="${m.l}" y="${H - 8}" font-size="${cfg.tick}" fill="#6b6580">${tick(new Date(t0).toISOString().slice(0, 10))}</text>`;
+  s += `<text x="${W - m.r}" y="${H - 8}" font-size="${cfg.tick}" fill="#6b6580" text-anchor="end">${tick(new Date(t1).toISOString().slice(0, 10))}</text>`;
+  s += `<text x="${lx}" y="${H - 8}" font-size="${cfg.tick}" font-weight="700" fill="#2c2653" text-anchor="middle">${tick(p.date)}</text>`;
+  s += `<text x="${m.l}" y="${m.t - 12}" font-size="${cfg.axis}" font-weight="700" fill="#2c2653" paint-order="stroke" stroke="#fdf9ef" stroke-width="3">AVG FARE ₹</text>`;
+  s += `<text x="${W - 4}" y="${m.t - 12}" font-size="${cfg.axis}" font-weight="700" fill="#0f6a5c" text-anchor="end" paint-order="stroke" stroke="#fdf9ef" stroke-width="3">SLEEPER SEATS</text>`;
+  s += `</svg>`;
+  return s;
+}
+
+function chartPanel(b, compact){
+  return `<div class="phead"><b>${b.d} ${b.o}</b><span>${b.t} · ${b.dur} · arrives ${b.a} · ${b.s} sleeper seats left</span></div>
+  ${chartSvg(b, compact)}
+  <div class="plegend">
+    <span><i class="swatch" style="background:#2c2653"></i>Avg sleeper fare ₹ (left)</span>
+    <span><i class="swatch" style="background:#0f6a5c"></i>Sleeper seats left (right)</span>
+  </div>`;
+}
+
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".chartbtn");
+  if (!btn) return;
+  const host = document.getElementById("pan-" + btn.dataset.idx);
+  if (!host) return;
+  const open = btn.getAttribute("aria-expanded") === "true";
+  if (!open && !host.dataset.filled) {
+    host.querySelector(".panel-slot").innerHTML = chartPanel(latest.buses[Number(btn.dataset.idx)], !btn.closest("tr"));
+    host.dataset.filled = "1";
+  }
+  host.hidden = open;
+  btn.setAttribute("aria-expanded", String(!open));
+  btn.textContent = open ? "Show price & seats" : "Hide chart";
+});
+
+/* ---------- others table ---------- */
+const others = BUSES.map((b, i) => ({b, i})).filter(x => x.b.o !== "IntrCity SmartBus" && x.b.o !== "FlixBus");
+document.getElementById("others").innerHTML = others.map(({b, i}) => `
+  <tr>
+    <td class="time">${b.d}</td>
+    <td class="num">${b.a}</td>
+    <td class="opname">${b.o}</td>
+    <td class="type">${b.t}</td>
+    <td class="num">${b.dur}</td>
+    <td class="num">${money(b.f)}</td>
+    <td class="num">${b.s}</td>
+    <td><button class="chartbtn" data-idx="${i}" aria-expanded="false" aria-controls="pan-${i}">Show price &amp; seats</button></td>
+  </tr>
+  <tr class="detail" id="pan-${i}" hidden><td colspan="8"><div class="panel-slot"></div></td></tr>`).join("");
+
+</script>
+</body>
+</html>
