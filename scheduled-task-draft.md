@@ -19,13 +19,13 @@ Use the browse browser tools (`tools["browse"].navigate` / snapshot / click / fi
 
 Then apply in the RedBus UI:
 
-- Departure time filter: 21:30–23:45 ONLY (everything outside this window is out of scope — do not capture it)
+- Departure time filter: tick the redBus preset bucket 18:00–24:00 (the UI has no custom range; do NOT try to type 21:30–23:45 anywhere)
 - Bus type: Sleeper (A/C Sleeper and Sleeper+Seater hybrids all count — record the exact label shown)
 - Sort: Departure time, DESCENDING (latest departure first)
 
 Scroll and click "load more" / trigger infinite scroll until no further buses appear in the window. Read the rendered DOM via snapshot, not screenshots.
 
-For every bus departing 21:30–23:45 capture: operator/service name, exact bus-type label, departure time, arrival time, duration.
+Keep only buses departing 21:30–23:45 (drop everything else). For each kept bus capture: operator/service name, exact bus-type label, departure time, arrival time, duration.
 
 PRICING: do NOT use the listing's "onwards" fare. For each bus, POST to `/rpw/api/connectingSeatLayout` with:
 

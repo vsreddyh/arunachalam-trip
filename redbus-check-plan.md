@@ -14,7 +14,8 @@ the buses that leave late enough to be a real alternative to the FlixBus 21:15.
 | From | Hyderabad |
 | To | Chennai |
 | Journey date | Thu, 24 Dec 2026 |
-| Departure window | 21:30 – 23:45 |
+| UI departure filter | 18:00 – 24:00 (redBus preset bucket) |
+| Report window | 21:30 – 23:45 (filter rows after capture; ignore the rest) |
 | Bus type | Sleeper |
 | Sort | Departure time, **descending** (latest first) |
 | Action | Read-only. No booking, no seat hold, no payment. |
