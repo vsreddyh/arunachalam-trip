@@ -70,6 +70,13 @@
   .who{font-weight:650; font-size:14px; color:var(--night)}
   .meta{font-size:12px; color:var(--muted); margin-top:2px}
   .fare{text-align:right; font-family:Georgia,serif; font-size:18px; color:var(--night); white-space:nowrap}
+  .fare .delta{display:block; font-family:system-ui,sans-serif; font-size:11px; font-weight:400; color:var(--muted)}
+  .fare .delta.down{color:var(--leaf); font-weight:700}
+  .fare .delta.up{color:var(--rose); font-weight:700}
+  td .delta{display:block; font-size:10.5px; color:var(--muted)}
+  td .delta.down{color:var(--leaf); font-weight:700}
+  td .delta.up{color:var(--rose); font-weight:700}
+  .meta .sdelta{font-size:11px; color:var(--muted)}
 
   .scroll{overflow-x:auto; margin-top:14px}
   table{border-collapse:collapse; width:100%; font-size:13px; min-width:820px}
@@ -90,9 +97,9 @@
   <header class="top">
     <div class="eyebrow">redBus · read-only check</div>
     <h1>Hyderabad → Chennai · Thu 24 Dec 2026</h1>
-    <div class="sub">Sleeper buses departing 21:30–23:45, latest first. *Fare = average of the 10 cheapest available sleeper berths per bus. Last updated 25 Nov 2026, ~23:20 IST.</div>
+    <div class="sub">Sleeper buses departing 21:30–23:45, latest first. *Fare = average of the 10 cheapest available sleeper berths per bus. Last updated 26 Nov 2026, ~22:00 IST.</div>
     <div class="chips">
-      <span class="chip"><b>20</b> buses in window</span>
+      <span class="chip"><b>21</b> buses in window</span>
       <span class="chip">Window <b>21:30 – 23:45</b></span>
       <span class="chip">All <b>A/C sleeper</b></span>
       <a class="chip" href="trip-plan-24-28-dec-2026.html">Go to plan →</a>
@@ -102,11 +109,11 @@
   <section class="card">
     <div class="card-head">
       <h2>Priority operators</h2>
-      <span class="hint">IntrCity and FlixBus first, latest departure at the top</span>
+      <span class="hint">IntrCity and FlixBus first, latest departure at the top · side values = change vs 25 Nov</span>
     </div>
     <div class="ops">
       <div>
-        <div class="op-head"><span class="badge b-intrcity">IntrCity SmartBus</span><span class="hint">2 buses</span></div>
+        <div class="op-head"><span class="badge b-intrcity">IntrCity SmartBus</span><span class="hint">3 buses</span></div>
         <div class="op-list" id="intrcity"></div>
       </div>
       <div>
@@ -119,7 +126,7 @@
   <section class="card">
     <div class="card-head">
       <h2>All other operators</h2>
-      <span class="hint">16 buses · 21:30–23:45 · latest first</span>
+      <span class="hint">17 buses · 21:30–23:45 · latest first · side values = change vs 25 Nov</span>
     </div>
     <div class="scroll">
       <table>
@@ -140,7 +147,7 @@
 </div>
 
 <script>
-const BUSES = [
+const BUSES_25NOV = [
   {d:"23:45",a:"10:25",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:5250,s:22},
   {d:"23:30",a:"10:10",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3254.5,s:22},
   {d:"23:10",a:"10:45",o:"LION Travels",t:"Bharat Benz A/C Sleeper (2+1)",dur:"11h35",f:4999,s:30},
@@ -163,30 +170,34 @@ const BUSES = [
   {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3000,s:40}
 ];
 
+const BUSES = [
+  {d:"23:45",a:"10:25",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3237.2,s:22},
+  {d:"23:30",a:"10:10",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3254.5,s:22},
+  {d:"23:10",a:"10:45",o:"LION Travels",t:"Bharat Benz A/C Sleeper (2+1)",dur:"11h35",f:4999,s:30},
+  {d:"23:00",a:"09:30",o:"Sri Krishna Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h30",f:3000,s:30},
+  {d:"22:50",a:"09:00",o:"Bharathi Travels",t:"Scania A/C Sleeper (2+1)",dur:"10h10",f:5000,s:30},
+  {d:"22:40",a:"10:10",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h30",f:2796.19,s:36},
+  {d:"22:30",a:"08:30",o:"ZENZU BUS",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h00",f:2999,s:36},
+  {d:"22:30",a:"09:00",o:"Sri Krishna Travels",t:"Volvo B11R A/C Sleeper (2+1)",dur:"10h30",f:2560,s:26},
+  {d:"22:30",a:"12:10",o:"MRM Travels",t:"A/C Seater/Sleeper (2+1)",dur:"13h40",f:5999,s:17},
+  {d:"22:05",a:"06:50",o:"zingbus Maxx",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"8h45",f:5075,s:29},
+  {d:"22:00",a:"09:30",o:"V Kaveri Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"11h30",f:3090,s:29},
+  {d:"22:00",a:"09:00",o:"Bharathi Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"11h00",f:3843,s:32},
+  {d:"22:00",a:"08:50",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h50",f:3237.2,s:22},
+  {d:"22:00",a:"08:40",o:"SBM TRAANSPORT",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h40",f:3421.95,s:24},
+  {d:"22:00",a:"10:00",o:"Sri Tulasi Tours",t:"A/C Sleeper (2+1)",dur:"12h00",f:2199,s:23},
+  {d:"21:45",a:"10:00",o:"Vikram Travels",t:"A/C Sleeper (2+1)",dur:"12h15",f:2935,s:26},
+  {d:"21:40",a:"09:20",o:"AVK Travels",t:"Bharat Benz A/C Seater/Sleeper (2+1)",dur:"11h40",f:2699,s:22},
+  {d:"21:40",a:"08:55",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h15",f:2796.19,s:35},
+  {d:"21:30",a:"08:00",o:"Madesh Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"10h30",f:3099,s:40},
+  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3167,s:29},
+  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3000,s:40}
+];
+
 const money = f => "₹" + f.toLocaleString("en-IN", {maximumFractionDigits: 0});
 
-/* ---------- priority operator lists ---------- */
-function busCard(b, i){
-  return `<div class="bus">
-    <div class="dep">${b.d}<small>→ ${b.a}</small></div>
-    <div>
-      <div class="who">${b.o}</div>
-      <div class="meta">${b.t} · ${b.dur} · ${b.s} sleeper seats</div>
-      <button class="chartbtn" data-idx="${i}" aria-expanded="false" aria-controls="pan-${i}">Show price &amp; seats</button>
-    </div>
-    <div class="fare">${money(b.f)}</div>
-  </div>
-  <div class="panel" id="pan-${i}" hidden><div class="panel-slot"></div></div>`;
-}
-const intrcity = BUSES.map((b, i) => ({b, i})).filter(x => x.b.o === "IntrCity SmartBus");
-const flix = BUSES.map((b, i) => ({b, i})).filter(x => x.b.o === "FlixBus");
-document.getElementById("intrcity").innerHTML = intrcity.map(x => busCard(x.b, x.i)).join("");
-document.getElementById("flix").innerHTML = flix.map(x => busCard(x.b, x.i)).join("");
-
-/* ---------- per-bus fare & seat charts ---------- */
-const START_DATE = "2026-11-25";
-const CAPTURES = [{ date: START_DATE, buses: BUSES }];
-
+/* ---------- captures & deltas (vs first capture) ---------- */
+const CAPTURES = [{ date: "2026-11-25", buses: BUSES_25NOV }, { date: "2026-11-26", buses: BUSES }];
 function withKeys(buses){
   const seen = new Map();
   return buses.map(b => {
@@ -201,6 +212,48 @@ const latest = keyed[keyed.length - 1];
 const seriesFor = key => keyed
   .map(c => { const b = c.buses.find(x => x.key === key); return b ? {date: c.date, f: b.f, s: b.s} : null; })
   .filter(Boolean);
+
+/* ---------- priority operator lists ---------- */
+function deltaFor(key){
+  const s = seriesFor(key);
+  if (s.length < 2 || !s[0].f) return {multi:false, pc:0, ds:0};
+  return {multi:true, pc:(s[s.length-1].f - s[0].f) / s[0].f * 100, ds:s[s.length-1].s - s[0].s};
+}
+const fmtPct = pc => (pc > 0 ? "+" : pc < 0 ? "\u2212" : "") + Math.abs(pc).toFixed(1).replace(/\.0$/, "") + "%";
+const fmtD = ds => (ds > 0 ? "+" : ds < 0 ? "\u2212" : "") + Math.abs(ds);
+const sideFare = i => {
+  const d = deltaFor(latest.buses[i].key);
+  if (!d.multi) return `<small class="delta">new</small>`;
+  const t = fmtPct(d.pc);
+  if (t === "0%") return "";
+  return `<small class="delta ${d.pc < 0 ? "down" : "up"}">${t}</small>`;
+};
+const sideSeat = i => {
+  const d = deltaFor(latest.buses[i].key);
+  return d.multi ? (d.ds === 0 ? "" : `(${fmtD(d.ds)})`) : `(new)`;
+};
+const sideSeatTd = i => {
+  const d = deltaFor(latest.buses[i].key);
+  if (!d.multi) return `<small class="delta">new</small>`;
+  return d.ds === 0 ? "" : `<small class="delta">${fmtD(d.ds)}</small>`;
+};
+function busCard(b, i){
+  return `<div class="bus">
+    <div class="dep">${b.d}<small>→ ${b.a}</small></div>
+    <div>
+      <div class="who">${b.o}</div>
+      <div class="meta">${b.t} · ${b.dur} · ${b.s} sleeper seats <span class="sdelta">${sideSeat(i)}</span></div>
+      <button class="chartbtn" data-idx="${i}" aria-expanded="false" aria-controls="pan-${i}">Show price &amp; seats</button>
+    </div>
+    <div class="fare">${money(b.f)}${sideFare(i)}</div>
+  </div>
+  <div class="panel" id="pan-${i}" hidden><div class="panel-slot"></div></div>`;
+}
+const intrcity = BUSES.map((b, i) => ({b, i})).filter(x => x.b.o === "IntrCity SmartBus");
+const flix = BUSES.map((b, i) => ({b, i})).filter(x => x.b.o === "FlixBus");
+document.getElementById("intrcity").innerHTML = intrcity.map(x => busCard(x.b, x.i)).join("");
+document.getElementById("flix").innerHTML = flix.map(x => busCard(x.b, x.i)).join("");
+
 
 const ts = d => typeof d === "number" ? d : Date.parse(d + "T00:00:00Z");
 const tick = d => {
@@ -251,8 +304,8 @@ function chartSvg(b, compact){
 
   const p = series[series.length - 1];
   const lx = x(p.date);
-  s += `<text x="${lx - 11}" y="${yF(p.f) + 4}" font-size="${cfg.val}" font-weight="700" fill="#2c2653" text-anchor="end">${money(p.f)}</text>`;
-  s += `<text x="${lx + 11}" y="${yS(p.s) + 4}" font-size="${cfg.val}" font-weight="700" fill="#0f6a5c">${p.s} sleeper</text>`;
+  s += `<text x="${lx - 11}" y="${yF(p.f) - 10}" font-size="${cfg.val}" font-weight="700" fill="#2c2653" text-anchor="end" paint-order="stroke" stroke="#fdf9ef" stroke-width="3" stroke-linejoin="round">${money(p.f)}</text>`;
+  s += `<text x="${lx + 11}" y="${yS(p.s) + 16}" font-size="${cfg.val}" font-weight="700" fill="#0f6a5c" paint-order="stroke" stroke="#fdf9ef" stroke-width="3" stroke-linejoin="round">${p.s} sleeper</text>`;
 
   s += `<text x="${m.l}" y="${H - 8}" font-size="${cfg.tick}" fill="#6b6580">${tick(new Date(t0).toISOString().slice(0, 10))}</text>`;
   s += `<text x="${W - m.r}" y="${H - 8}" font-size="${cfg.tick}" fill="#6b6580" text-anchor="end">${tick(new Date(t1).toISOString().slice(0, 10))}</text>`;
@@ -296,8 +349,8 @@ document.getElementById("others").innerHTML = others.map(({b, i}) => `
     <td class="opname">${b.o}</td>
     <td class="type">${b.t}</td>
     <td class="num">${b.dur}</td>
-    <td class="num">${money(b.f)}</td>
-    <td class="num">${b.s}</td>
+    <td class="num">${money(b.f)}${sideFare(i)}</td>
+    <td class="num">${b.s}${sideSeatTd(i)}</td>
     <td><button class="chartbtn" data-idx="${i}" aria-expanded="false" aria-controls="pan-${i}">Show price &amp; seats</button></td>
   </tr>
   <tr class="detail" id="pan-${i}" hidden><td colspan="8"><div class="panel-slot"></div></td></tr>`).join("");

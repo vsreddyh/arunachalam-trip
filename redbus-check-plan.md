@@ -79,3 +79,9 @@ Pause/resume or delete via the task list (Settings → Scheduled tasks) once 24 
   sleeper berths only (seat-layout API). Window narrowed to 21:30–23:45 only; everything
   outside scrapped from `redbus-24dec-2026.md` and the dashboard already covers just the 20.
 
+
+- **26 Nov 2026, ~22:00 IST** — success. 21 buses in 21:30–23:45 (route shows 44;
+  43 in the 18:00–24:00 UI bucket). Notable moves vs 25 Nov: 23:45 IntrCity avg
+  5250 → 3237.2; zingbus avg 5209 → 5075 with berths 39 → 29; Vikram 21:30
+  (29-berth) avg 3013 → 3167; +1 new bus (22:00 IntrCity, avg 3237.2, 22 berths).
+  Dashboard + `redbus-24dec-2026.md` updated; charts now draw 2-point lines.
