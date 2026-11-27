@@ -85,3 +85,8 @@ Pause/resume or delete via the task list (Settings → Scheduled tasks) once 24 
   5250 → 3237.2; zingbus avg 5209 → 5075 with berths 39 → 29; Vikram 21:30
   (29-berth) avg 3013 → 3167; +1 new bus (22:00 IntrCity, avg 3237.2, 22 berths).
   Dashboard + `redbus-24dec-2026.md` updated; charts now draw 2-point lines.
+- **27 Nov 2026, ~22:00 IST** — success. 22 buses in 21:30–23:45 (route shows 45).
+  Moves vs 26 Nov: zingbus avg 5075 → 5411; Vikram 21:30 (29-berth) avg 3167 →
+  2979; 23:30 IntrCity berths 22 → 20 (avg flat); +1 new bus (21:45 Maharaja,
+  avg 8999, 30 berths, 20h15 run — disregarded). Dashboard holds 3 captures;
+  fare axis rescaled 6k → 10k for the Maharaja outlier.

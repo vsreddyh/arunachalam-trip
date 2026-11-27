@@ -97,9 +97,9 @@
   <header class="top">
     <div class="eyebrow">redBus · read-only check</div>
     <h1>Hyderabad → Chennai · Thu 24 Dec 2026</h1>
-    <div class="sub">Sleeper buses departing 21:30–23:45, latest first. *Fare = average of the 10 cheapest available sleeper berths per bus. Last updated 26 Nov 2026, ~22:00 IST.</div>
+    <div class="sub">Sleeper buses departing 21:30–23:45, latest first. *Fare = average of the 10 cheapest available sleeper berths per bus. Last updated 27 Nov 2026, ~22:00 IST.</div>
     <div class="chips">
-      <span class="chip"><b>21</b> buses in window</span>
+      <span class="chip"><b>22</b> buses in window</span>
       <span class="chip">Window <b>21:30 – 23:45</b></span>
       <span class="chip">All <b>A/C sleeper</b></span>
       <a class="chip" href="trip-plan-24-28-dec-2026.html">Go to plan →</a>
@@ -126,7 +126,7 @@
   <section class="card">
     <div class="card-head">
       <h2>All other operators</h2>
-      <span class="hint">17 buses · 21:30–23:45 · latest first · side values = change vs 25 Nov</span>
+      <span class="hint">18 buses · 21:30–23:45 · latest first · side values = change vs 25 Nov</span>
     </div>
     <div class="scroll">
       <table>
@@ -170,7 +170,7 @@ const BUSES_25NOV = [
   {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3000,s:40}
 ];
 
-const BUSES = [
+const BUSES_26NOV = [
   {d:"23:45",a:"10:25",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3237.2,s:22},
   {d:"23:30",a:"10:10",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3254.5,s:22},
   {d:"23:10",a:"10:45",o:"LION Travels",t:"Bharat Benz A/C Sleeper (2+1)",dur:"11h35",f:4999,s:30},
@@ -194,10 +194,35 @@ const BUSES = [
   {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3000,s:40}
 ];
 
+const BUSES = [
+  {d:"23:45",a:"10:25",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3237.2,s:22},
+  {d:"23:30",a:"10:10",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h40",f:3254.5,s:20},
+  {d:"23:10",a:"10:45",o:"LION Travels",t:"Bharat Benz A/C Sleeper (2+1)",dur:"11h35",f:4999,s:30},
+  {d:"23:00",a:"09:30",o:"Sri Krishna Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h30",f:3000,s:30},
+  {d:"22:50",a:"09:00",o:"Bharathi Travels",t:"Scania A/C Sleeper (2+1)",dur:"10h10",f:5000,s:30},
+  {d:"22:40",a:"10:10",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h30",f:2796.19,s:36},
+  {d:"22:30",a:"08:30",o:"ZENZU BUS",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h00",f:2999,s:36},
+  {d:"22:30",a:"09:00",o:"Sri Krishna Travels",t:"Volvo B11R A/C Sleeper (2+1)",dur:"10h30",f:2560,s:26},
+  {d:"22:30",a:"12:10",o:"MRM Travels",t:"A/C Seater/Sleeper (2+1)",dur:"13h40",f:5999,s:17},
+  {d:"22:05",a:"06:50",o:"zingbus Maxx",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"8h45",f:5411,s:29},
+  {d:"22:00",a:"09:30",o:"V Kaveri Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"11h30",f:3090,s:29},
+  {d:"22:00",a:"09:00",o:"Bharathi Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"11h00",f:3843,s:32},
+  {d:"22:00",a:"08:50",o:"IntrCity SmartBus",t:"A/C Seater/Sleeper (2+1)",dur:"10h50",f:3237.2,s:22},
+  {d:"22:00",a:"08:40",o:"SBM TRAANSPORT",t:"Bharat Benz A/C Sleeper (2+1)",dur:"10h40",f:3421.95,s:24},
+  {d:"22:00",a:"10:00",o:"Sri Tulasi Tours",t:"A/C Sleeper (2+1)",dur:"12h00",f:2199,s:23},
+  {d:"21:45",a:"10:00",o:"Vikram Travels",t:"A/C Sleeper (2+1)",dur:"12h15",f:2935,s:26},
+  {d:"21:45",a:"18:00",o:"Maharaja Tour and Travels LLP",t:"A/C Sleeper (2+1)",dur:"20h15",f:8999,s:30},
+  {d:"21:40",a:"09:20",o:"AVK Travels",t:"Bharat Benz A/C Seater/Sleeper (2+1)",dur:"11h40",f:2699,s:22},
+  {d:"21:40",a:"08:55",o:"FlixBus",t:"A/C Sleeper (2+1)",dur:"11h15",f:2796.19,s:35},
+  {d:"21:30",a:"08:00",o:"Madesh Travels",t:"Volvo 9600 SLX A/C Sleeper (2+1)",dur:"10h30",f:3099,s:40},
+  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:2979,s:29},
+  {d:"21:30",a:"08:10",o:"Vikram Travels",t:"Volvo 9600 A/C Sleeper (2+1)",dur:"10h40",f:3000,s:40}
+];
+
 const money = f => "₹" + f.toLocaleString("en-IN", {maximumFractionDigits: 0});
 
 /* ---------- captures & deltas (vs first capture) ---------- */
-const CAPTURES = [{ date: "2026-11-25", buses: BUSES_25NOV }, { date: "2026-11-26", buses: BUSES }];
+const CAPTURES = [{ date: "2026-11-25", buses: BUSES_25NOV }, { date: "2026-11-26", buses: BUSES_26NOV }, { date: "2026-11-27", buses: BUSES }];
 function withKeys(buses){
   const seen = new Map();
   return buses.map(b => {
@@ -272,12 +297,12 @@ function chartSvg(b, compact){
   const t0 = ts(series[0].date) - 2 * DAY;
   const t1 = ts(series[series.length - 1].date) + 2 * DAY;
   const x = d => m.l + (ts(d) - t0) / (t1 - t0) * pw;
-  const yF = v => m.t + (1 - v / 6000) * ph;
+  const yF = v => m.t + (1 - v / 10000) * ph;
   const yS = v => m.t + (1 - v / 50) * ph;
 
   let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Average sleeper fare and sleeper seats by day for ${b.o}, ${b.d} departure">`;
 
-  [0, 3000, 6000].forEach(v => {
+  [0, 5000, 10000].forEach(v => {
     s += `<line x1="${m.l}" y1="${yF(v)}" x2="${W - m.r}" y2="${yF(v)}" stroke="#f4eee0" stroke-width="1"/>`;
     s += `<text x="${m.l - 8}" y="${yF(v) + 4}" font-size="${cfg.tick}" fill="#6b6580" text-anchor="end">${v === 0 ? "0" : v / 1000 + "k"}</text>`;
   });
